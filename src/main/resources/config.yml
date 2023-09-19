@@ -11,5 +11,16 @@ cooldown-time: 0
 # Maximum amount of homes.
 max-homes: 1
 
+# Storage method. Choose from following options:
+# - SQLite (does not require any additional configuration or software)
+# - MySQL
+storage-method: SQLite
 
-
+# MySQL connection details.
+# Ignore this if you are using SQLite.
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  database: database
+  user: user
+  password: password
