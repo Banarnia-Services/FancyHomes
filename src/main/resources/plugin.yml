@@ -4,6 +4,5 @@ main: de.banarnia.fancyhomes.FancyHomes
 prefix: FancyHomes
 author: Banarnia
 description: Homes-Plugin with usability in mind.
-depend:
 softdepend:
   - LuckPerms
