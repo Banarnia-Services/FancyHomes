@@ -45,7 +45,7 @@ public interface HomeData {
 
     /**
      * Gets the amount of homes the player may have.
-     * @return
+     * @return Max amount of homes.
      */
     int getHomeLimit();
 
