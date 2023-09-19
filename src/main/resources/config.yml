@@ -1,0 +1,15 @@
+# Config version: Do not touch this.
+version: 1.0
+
+# Warmup time (in s). Determines the time a player needs to stand still before he gets teleported.
+# Teleport will be aborted if he moves or gets harmed during warmup phase.
+warmup-time: 0
+
+# Cooldown time (in s). Determines the time a player cannot issue another teleport within x seconds after the last one.
+cooldown-time: 0
+
+# Maximum amount of homes.
+max-homes: 1
+
+
+
