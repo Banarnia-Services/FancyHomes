@@ -18,7 +18,7 @@ public class SQLite extends Database {
     @Override
     public boolean openConnection() {
         if (!databaseFile.exists()) {
-            databaseFile.mkdirs();
+            databaseFile.getParentFile().mkdirs();
             try {
                 databaseFile.createNewFile();
             } catch (IOException e) {
