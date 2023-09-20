@@ -4,6 +4,7 @@ import co.aikar.commands.CommandManager;
 import co.aikar.commands.InvalidCommandArgument;
 import de.banarnia.fancyhomes.FancyHomesAPI;
 import de.banarnia.fancyhomes.data.Home;
+import de.banarnia.fancyhomes.lang.Message;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -23,16 +24,14 @@ public class CommandSetup {
     public static void initCommandContext(CommandManager manager) {
         manager.getCommandContexts().registerContext(Home.class, c -> {
             if (!c.getIssuer().isPlayer())
-                // TODO: Message.
-                throw new InvalidCommandArgument();
+                throw new InvalidCommandArgument(Message.COMMAND_ERROR_CONSOLE_NOT_SUPPORTED.get());
 
             String tag = c.popFirstArg();
             Home home = FancyHomesAPI.get().getHome((Player) c.getIssuer(), tag);
             if (home != null)
                 return home;
             else
-                // TODO: Message.
-                throw new InvalidCommandArgument();
+                throw new InvalidCommandArgument(Message.COMMAND_ERROR_HOME_NOT_FOUND.replace("%home%", tag));
         });
     }
 
