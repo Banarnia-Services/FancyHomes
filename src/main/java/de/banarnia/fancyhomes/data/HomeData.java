@@ -22,6 +22,11 @@ public interface HomeData {
     String getPlayerName();
 
     /**
+     * Reloads the players data.
+     */
+    void load();
+
+    /**
      * Adds a new home, if there is no home instance with the same name and the limit is not reached.
      * @param name Home name.
      * @param location Home location.
@@ -55,5 +60,13 @@ public interface HomeData {
      */
     default int getHomeAmount() {
         return getPlayersHomes().size();
+    }
+
+    /**
+     * Check if the player has reached the max amount of homes.
+     * @return True if home limit was reached, else false.
+     */
+    default boolean homeLimitReached() {
+        return getHomeAmount() >= getHomeLimit() && getHomeLimit() >= 0;
     }
 }

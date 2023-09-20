@@ -12,9 +12,6 @@ import java.util.UUID;
 public class Home {
 
     @Getter
-    private int id;
-
-    @Getter
     private String name;
 
     @Getter
@@ -31,9 +28,9 @@ public class Home {
     @Getter
     private float yaw, pitch;
 
-    public Home(int id, UUID playerId, String playerName, Timestamp created,
+    public Home(String name, UUID playerId, String playerName, Timestamp created,
                 String worldName, double x, double y, double z, float yaw, float pitch) {
-        this.id = id;
+        this.name = name;
         this.playerId = playerId;
         this.playerName = playerName;
         this.created = created;
