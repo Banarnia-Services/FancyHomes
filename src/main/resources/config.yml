@@ -1,6 +1,11 @@
 # Config version: Do not touch this.
 version: 1.0
 
+# Language file. Will to for a file called <ARG>.yml in the lang folder.
+# If the file does not exist, it will be automatically created for you to edit.
+# Example: 'en' will look for /lang/en.yml
+language: en
+
 # Warmup time (in s). Determines the time a player needs to stand still before he gets teleported.
 # Teleport will be aborted if he moves or gets harmed during warmup phase.
 warmup-time: 0

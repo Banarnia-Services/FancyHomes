@@ -21,6 +21,10 @@ public class HomeConfig {
         this.config = config;
     }
 
+    public String getLanguage() {
+        return config.getString("language", "en");
+    }
+
     public double getWarmupTime() {
         return config.getDouble("warmup-time", 0);
     }
