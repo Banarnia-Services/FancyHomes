@@ -4,9 +4,10 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Home {
@@ -68,6 +69,28 @@ public class Home {
             return null;
 
         return new Location(world, this.x, this.y, this.z, this.yaw, this.pitch);
+    }
+
+    /**
+     * Teleports the player to the home location, if it is loaded.
+     * @param player Player to teleport.
+     * @param cause Teleport cause.
+     * @return True if player was teleported, else false.
+     */
+    public boolean teleport(Player player, PlayerTeleportEvent.TeleportCause cause) {
+        if (!isLoaded())
+            return false;
+
+        return cause != null ? player.teleport(getLocation(), cause) : player.teleport(getLocation());
+    }
+
+    /**
+     * Teleports the player to the home location, if it is loaded.
+     * @param player Player to teleport.
+     * @return True if player was teleported, else false.
+     */
+    public boolean teleport(Player player) {
+        return teleport(player, null);
     }
 
 }
