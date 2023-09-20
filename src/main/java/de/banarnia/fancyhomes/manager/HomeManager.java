@@ -34,20 +34,38 @@ public class HomeManager implements FancyHomesAPI {
         this.database = config.getDatabase();
         this.database.openConnection();
 
-        database.executeQuery("CREATE TABLE IF NOT EXISTS fancyhomes_homedata (" +
-                "ID int NOT NULL AUTO_INCREMENT," +
-                "Name varchar(16) NOT NULL," +
-                "UUID varchar(36) NOT NULL," +
-                "Player varchar(16) DEFAULT '?'," +
-                "Created datetime DEFAULT NOW()," +
-                "World varchar(16) NOT NULL," +
-                "X double NOT NULL," +
-                "Y double NOT NULL," +
-                "Z double NOT NULL," +
-                "Yaw float NOT NULL," +
-                "Pitch float NOT NULL," +
-                "PRIMARY KEY (ID)" +
-                ");");
+        switch (config.getStorageMethod()) {
+            case MySQL:
+                database.executeUpdate("CREATE TABLE IF NOT EXISTS fancyhomes_homedata (" +
+                        "ID int PRIMARY KEY AUTO_INCREMENT," +
+                        "Name varchar(16) NOT NULL," +
+                        "UUID varchar(36) NOT NULL," +
+                        "Player varchar(16) DEFAULT '?'," +
+                        "Created datetime DEFAULT NOW()," +
+                        "World varchar(16) NOT NULL," +
+                        "X double NOT NULL," +
+                        "Y double NOT NULL," +
+                        "Z double NOT NULL," +
+                        "Yaw float NOT NULL," +
+                        "Pitch float NOT NULL" +
+                        ");");
+                break;
+            case SQLite:
+                database.executeUpdate("CREATE TABLE IF NOT EXISTS fancyhomes_homedata (" +
+                        "ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "Name TEXT NOT NULL," +
+                        "UUID TEXT NOT NULL," +
+                        "Player TEXT DEFAULT '?'," +
+                        "Created INTEGER," +
+                        "World TEXT NOT NULL," +
+                        "X REAL NOT NULL," +
+                        "Y REAL NOT NULL," +
+                        "Z REAL NOT NULL," +
+                        "Yaw REAL NOT NULL," +
+                        "Pitch REAL NOT NULL" +
+                        ");");
+                break;
+        }
     }
 
     public CompletableFuture<HomeData> loadPlayer(UUID playerId) {

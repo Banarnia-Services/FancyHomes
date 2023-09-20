@@ -60,30 +60,7 @@ public abstract class Database {
      * @return True if it was successful, else false.
      */
     public boolean executeUpdate(String sql) {
-        if (connection == null) return false;
-        openConnection();
-
-        if (sql == null || sql.length() == 0) return false;
-
-        PreparedStatement statement = null;
-        try {
-            statement = connection.prepareStatement(sql);
-            statement.executeUpdate();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            logger.warning("Error while sending an mysql update:");
-            logger.warning("Statement: " + sql);
-        } finally {
-            try {
-                if (statement != null)
-                    statement.close();
-            } catch (Exception ex) {
-
-
-            }
-        }
-
-        return true;
+        return executeUpdate(sql, null);
     }
 
     /**
@@ -100,8 +77,9 @@ public abstract class Database {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(sql);
-            for (int i = 0; i < objects.length; i++)
-                preparedStatement.setObject(i + 1, objects[i]);
+            if (objects != null)
+                for (int i = 0; i < objects.length; i++)
+                    preparedStatement.setObject(i + 1, objects[i]);
 
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
@@ -150,19 +128,7 @@ public abstract class Database {
      * @return Result.
      */
     public ResultSet executeQuery(String sql) {
-        openConnection();
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        try {
-            preparedStatement = connection.prepareStatement(sql);
-            resultSet = preparedStatement.executeQuery();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            logger.warning("Error while sending a mysql query:");
-            logger.warning("Query: " + sql);
-        }
-
-        return resultSet;
+        return executeQuery(sql, null);
     }
 
     /**
@@ -175,10 +141,12 @@ public abstract class Database {
         openConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+
         try {
             preparedStatement = connection.prepareStatement(sql);
-            for (int i = 0; i < objects.length; i++)
-                preparedStatement.setObject(i + 1, objects[i]);
+            if (objects != null)
+                for (int i = 0; i < objects.length; i++)
+                    preparedStatement.setObject(i + 1, objects[i]);
 
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException ex) {
