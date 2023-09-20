@@ -71,4 +71,21 @@ public interface FancyHomesAPI {
      */
     int getHomeLimit(Player player);
 
+    /**
+     * Check if the player has reached the home limit.
+     * @param player Player instance.
+     * @return True if home limit is reached, else false.
+     */
+    default boolean homeLimitReached(Player player) {
+        return getHomes(player).size() >= getHomeLimit(player);
+    }
+
+    /**
+     * Check if the player has exceeded the home limit.
+     * @param player Player instance.
+     * @return True if home limit is exceeded, else false.
+     */
+    default boolean homeLimitExceeded(Player player) {
+        return getHomes(player).size() > getHomeLimit(player);
+    }
 }
