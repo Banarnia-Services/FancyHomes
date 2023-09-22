@@ -1,72 +1,73 @@
 package de.banarnia.fancyhomes.data;
 
+import de.banarnia.fancyhomes.data.storage.Home;
 import org.bukkit.Location;
 
-import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
-/**
- * Represents a players home data.
- */
 public interface HomeData {
 
     /**
-     * Get a map of all players homes and their names.
-     * @return A list of homes that correspond to the player.
-     */
-    HashMap<String, Home> getPlayersHomes();
-
-    /**
-     * Get the last known player name.
-     * @return Name of the player.
+     * Get players name.
+     * @return Players name.
      */
     String getPlayerName();
 
     /**
-     * Reloads the players data.
+     * Get players uuid.
+     * @return Players uuid.
      */
-    void load();
+    UUID getUuid();
 
     /**
-     * Adds a new home, if there is no home instance with the same name and the limit is not reached.
+     * Tries to add a new home.
      * @param name Home name.
      * @param location Home location.
-     * @return True, if the home was successfully added. Else false.
+     * @return True if home was created, else false.
      */
-    boolean addHome(String name, Location location);
+    CompletableFuture<Boolean> addHome(String name, Location location);
 
     /**
-     * Deletes the home with the given name.
+     * Update a homes location and creation timestamp.
+     * @param homeName Home name.
+     * @param newLocation New home location.
+     * @return True if home was updated, else false.
+     */
+    CompletableFuture<Boolean> updateHome(String homeName, Location newLocation);
+
+    /**
+     * Tries to delete a home.
      * @param name Home name.
-     * @return True, if the home was deleted. False if the home does not exist.
+     * @return True if home was deleted, else false.
      */
-    boolean deleteHome(String name);
+    CompletableFuture<Boolean> deleteHome(String name);
 
     /**
-     * Checks if a home with the given name exists.
-     * @param name Home name.
-     * @return True, if the home exists. Else false.
+     * Get a map of all players homes.
+     * @return Map of all players homes and their names.
      */
-    boolean homeExists(String name);
+    Map<String, Home> getHomeMap();
 
     /**
-     * Gets the amount of homes the player may have.
-     * @return Max amount of homes.
+     * Check if a player has a home with the given name.
+     * @param homeName Home name.
+     * @return True if home exists, else false.
      */
-    int getHomeLimit();
-
-    /**
-     * Get the current amount of homes.
-     * @return Amount of homes.
-     */
-    default int getHomeAmount() {
-        return getPlayersHomes().size();
+    default boolean hasHome(String homeName) {
+        return getHomeMap().containsKey(homeName);
     }
 
     /**
-     * Check if the player has reached the max amount of homes.
-     * @return True if home limit was reached, else false.
+     * Get a players home by name.
+     * @param homeName Home name.
+     * @return Home if exists.
      */
-    default boolean homeLimitReached() {
-        return getHomeAmount() >= getHomeLimit() && getHomeLimit() >= 0;
+    default Home getHome(String homeName) {
+        return getHomeMap().get(homeName);
     }
+
+
+
 }

@@ -1,15 +1,11 @@
 package de.banarnia.fancyhomes.commands;
 
 import co.aikar.commands.BaseCommand;
-import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.CommandCompletion;
-import co.aikar.commands.annotation.Default;
+import co.aikar.commands.annotation.*;
 import de.banarnia.fancyhomes.FancyHomesAPI;
-import de.banarnia.fancyhomes.data.Home;
-import de.banarnia.fancyhomes.lang.Message;
+import de.banarnia.fancyhomes.data.storage.Home;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-
-import java.util.concurrent.CompletableFuture;
 
 @CommandAlias("delhome")
 public class DelhomeCommand extends BaseCommand {
@@ -19,10 +15,14 @@ public class DelhomeCommand extends BaseCommand {
     @Default
     @CommandCompletion("@homes")
     public void delHome(Player sender, Home home) {
-        CompletableFuture.runAsync(() -> api.deleteHome(sender, home.getName()))
-                .thenRun(() -> sender.sendMessage(Message.COMMAND_INFO_DELHOME_SUCCESS.replace("%home%", home.getName())));
+        api.deleteHome(sender, sender.getUniqueId(), home.getName());
+    }
 
-
+    @Subcommand("others")
+    @CommandPermission("fancyhomes.delete.others")
+    @CommandCompletion("@players @nothing")
+    public void delHome(Player sender, OfflinePlayer target, String homeName) {
+        api.deleteHome(sender, target.getUniqueId(), homeName);
     }
 
 }

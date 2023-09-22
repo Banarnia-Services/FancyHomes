@@ -1,5 +1,7 @@
 package de.banarnia.fancyhomes.api.config;
 
+import org.bukkit.configuration.ConfigurationSection;
+
 import java.util.List;
 import java.util.Set;
 
@@ -161,5 +163,14 @@ public interface Config {
     default <T> T getOrElseSet(String key, T def) {
         return getOrElseSet(key, def, true);
     }
+
+    /**
+     * Get a configuration section from the given path.
+     * @param key Section path.
+     * @return Section if found, else null.
+     */
+    ConfigurationSection getConfigurationSection(String key);
+
+
 
 }

@@ -4,14 +4,23 @@ import de.banarnia.fancyhomes.api.lang.ILanguage;
 
 public enum Message implements ILanguage {
     PREFIX("§8[§6FancyHomes§8]§7"),
-    COMMAND_ERROR_CONSOLE_NOT_SUPPORTED("This command may not be executed by console."),
-    COMMAND_ERROR_HOME_NOT_FOUND("Could not find a home with the name %home%."),
+    COMMAND_ERROR_CONSOLE_NOT_SUPPORTED("%prefix% §cThis command may not be executed by console."),
+    COMMAND_ERROR_HOME_NOT_FOUND("%prefix% §cCould not find a home with the name §e%home%§c."),
+    COMMAND_ERROR_HOME_EMPTY("%prefix% §cYou do not have any homes."),
+    COMMAND_ERROR_HOME_OTHERS_NOT_FOUND("%prefix% §cCould not find a home with the name §e%home%§7 for player §e%player%§7."),
+    COMMAND_INFO_HOME_CONFIG_RELOADED("%prefix% The config has been reloaded."),
 
     COMMAND_ERROR_SETHOME_LIMIT_REACHED("%prefix% §cYou don't have any homes left."),
     COMMAND_ERROR_SETHOME_LIMIT_EXCEEDED("%prefix% §cYou can't edit any homes because you exceeded the home limit."),
-    COMMAND_INFO_SETHOME_RELOCATED("%prefix% You relocated your home §e%home% §7to your current location."),
+    COMMAND_INFO_SETHOME_RELOCATED("%prefix% You relocated the home §e%home% §7to your current location."),
+    COMMAND_ERROR_SETHOME_RELOCATION_FAILED("%prefix% §cFailed to relocate the home."),
+    COMMAND_ERROR_HOME_CANCELED("%prefix% §cYou cannot do that right now."),
+    COMMAND_ERROR_DELHOME_CANCELED("%prefix% §cYou cannot delete the home §e%home% §7cright now."),
+    COMMAND_ERROR_SETHOME_CANCELED("%prefix% §cYou cannot create the home §e%home% §7cright now."),
     COMMAND_INFO_SETHOME_CREATED("%prefix% Successfully created a new home §e%home%§7."),
-    COMMAND_INFO_DELHOME_SUCCESS("%prefix% Successfully deleted your home §e%home%§7."),
+    COMMAND_ERROR_SETHOME_FAILED("%prefix% §cFailed to create a new home."),
+    COMMAND_INFO_DELHOME_SUCCESS("%prefix% Successfully deleted the home §e%home%§7."),
+    COMMAND_ERROR_DELHOME_FAILED("%prefix% §cFailed to delete the home."),
     COMMAND_ERROR_HOME_LIMIT_EXCEEDED("%prefix% §cYou can't use any homes because you exceeded the home limit."),
 
     COMMAND_ERROR_HOME_COOLDOWN("%prefix% §cYou can't do that again within the next §e%time%s§c."),

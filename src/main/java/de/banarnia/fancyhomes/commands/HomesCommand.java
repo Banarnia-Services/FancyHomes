@@ -1,26 +1,31 @@
 package de.banarnia.fancyhomes.commands;
 
 import co.aikar.commands.BaseCommand;
-import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.CommandCompletion;
-import co.aikar.commands.annotation.CommandPermission;
-import co.aikar.commands.annotation.Default;
+import co.aikar.commands.annotation.*;
+import de.banarnia.fancyhomes.FancyHomesAPI;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 @CommandAlias("homes")
 public class HomesCommand extends BaseCommand {
 
-    @Default
-    public void homes(Player sender) {
-        // TODO: Implementation.
-    }
+    private FancyHomesAPI api = FancyHomesAPI.get();
 
     @Default
+    public void openGui(Player sender) {
+        sender.sendMessage("Not yet implemented.");
+    }
+
+    @Subcommand("list")
+    public void homesList(Player sender) {
+        listOthersHomes(sender, sender);
+    }
+
+    @Subcommand("list")
     @CommandPermission("fancyhomes.others")
     @CommandCompletion("@players @nothing")
-    public void otherHomes(Player sender, OfflinePlayer target) {
-        // TODO: Implementation.
+    public void listOthersHomes(Player sender, OfflinePlayer target) {
+        api.listHomes(sender, target.getUniqueId());
     }
 
 }

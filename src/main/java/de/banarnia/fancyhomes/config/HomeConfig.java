@@ -1,24 +1,26 @@
 package de.banarnia.fancyhomes.config;
 
 import de.banarnia.fancyhomes.FancyHomes;
-import de.banarnia.fancyhomes.data.StorageMethod;
 import de.banarnia.fancyhomes.api.config.Config;
 import de.banarnia.fancyhomes.api.sql.Database;
 import de.banarnia.fancyhomes.api.sql.MySQL;
-import de.banarnia.fancyhomes.api.sql.SQLite;
-
-import java.io.File;
+import de.banarnia.fancyhomes.data.storage.StorageMethod;
 
 public class HomeConfig {
 
     private FancyHomes plugin;
 
     private Config config;
+
     private Database database;
 
     public HomeConfig(FancyHomes plugin, Config config) {
         this.plugin = plugin;
         this.config = config;
+    }
+
+    public void reload() {
+        config.loadConfig();
     }
 
     public String getLanguage() {
@@ -53,41 +55,32 @@ public class HomeConfig {
     }
 
     public StorageMethod getStorageMethod() {
-        String method = config.getString("storage-method");
-        if (method.equalsIgnoreCase("SQLite"))
-            return StorageMethod.SQLite;
-        else if (method.equalsIgnoreCase("MySQL"))
+        String method = config.getString("storage-method", StorageMethod.File.toString());
+        if (method.equalsIgnoreCase("MySQL"))
             return StorageMethod.MySQL;
-        else {
-            plugin.getLogger().warning("Invalid storage method configured in config.yml");
-            plugin.getLogger().warning("Falling back to SQLite...");
-            return StorageMethod.SQLite;
-        }
+
+        return StorageMethod.File;
     }
 
-    /**
-     * Get the database if configured.
-     * @return Database instance.
-     */
+    public boolean debugMode() {
+        return config.getBoolean("debug");
+    }
+
     public Database getDatabase() {
         if (database != null)
             return database;
 
-        StorageMethod storageMethod = getStorageMethod();
-        switch (storageMethod) {
-            case SQLite -> this.database = new SQLite(plugin.getLogger(), new File(plugin.getDataFolder(), "homes.db"));
-            case MySQL -> {
-                String host = config.getString("mysql.host", "127.0.0.1");
-                int port = config.getInt("mysql.port", 3306);
-                String database = config.getString("mysql.database", "database");
-                String user = config.getString("mysql.user", "user");
-                String password = config.getString("mysql.password", "password");
+        if (getStorageMethod() == StorageMethod.MySQL) {
+            String host = config.getString("mysql.host");
+            int port = config.getInt("mysql.port");
+            String database = config.getString("mysql.database");
+            String user = config.getString("mysql.user");
+            String password = config.getString("mysql.password");
 
-                this.database = new MySQL(database, plugin.getLogger(), host, port, user, password);
-            }
+            this.database = new MySQL(database, plugin.getLogger(), host, port, user, password);
         }
 
-        return this.database;
+        return database;
     }
 
 }

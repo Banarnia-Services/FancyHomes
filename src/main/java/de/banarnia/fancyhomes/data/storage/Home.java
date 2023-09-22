@@ -1,26 +1,28 @@
-package de.banarnia.fancyhomes.data;
+package de.banarnia.fancyhomes.data.storage;
 
+import de.banarnia.fancyhomes.lang.Message;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
 import java.sql.Timestamp;
-import java.util.UUID;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-public class Home {
+public class Home implements ConfigurationSerializable {
 
     @Getter
     private String name;
-
     @Getter
-    private UUID playerId;
-    @Getter
-    private String playerName;
-    @Getter
-    private Timestamp created;
+    private long created;
 
     @Getter
     private String worldName;
@@ -29,11 +31,9 @@ public class Home {
     @Getter
     private float yaw, pitch;
 
-    public Home(String name, UUID playerId, String playerName, Timestamp created,
+    public Home(String name, long created,
                 String worldName, double x, double y, double z, float yaw, float pitch) {
         this.name = name;
-        this.playerId = playerId;
-        this.playerName = playerName;
         this.created = created;
         this.worldName = worldName;
         this.x = x;
@@ -71,6 +71,22 @@ public class Home {
         return new Location(world, this.x, this.y, this.z, this.yaw, this.pitch);
     }
 
+    protected boolean updateLocation(Location newLocation, long timestamp) {
+        if (newLocation == null || newLocation.getWorld() == null)
+            return false;
+
+        this.worldName = newLocation.getWorld().getName();
+        this.x = newLocation.getX();
+        this.y = newLocation.getY();
+        this.z = newLocation.getZ();
+        this.yaw = newLocation.getYaw();
+        this.pitch = newLocation.getPitch();
+
+        this.created = timestamp;
+
+        return true;
+    }
+
     /**
      * Teleports the player to the home location, if it is loaded.
      * @param player Player to teleport.
@@ -81,6 +97,7 @@ public class Home {
         if (!isLoaded())
             return false;
 
+        player.sendMessage(Message.COMMAND_INFO_HOME_TELEPORT.replace("%home%", name));
         return cause != null ? player.teleport(getLocation(), cause) : player.teleport(getLocation());
     }
 
@@ -91,6 +108,38 @@ public class Home {
      */
     public boolean teleport(Player player) {
         return teleport(player, null);
+    }
+
+    public Timestamp getSqlTimestamp() {
+        return new Timestamp(created);
+    }
+
+    @Override
+    public Map<String, Object> serialize() {
+        HashMap<String, Object> result = new LinkedHashMap<>();
+        result.put("Name", name);
+        result.put("Created", created);
+        result.put("World", worldName);
+        result.put("X", x);
+        result.put("Y", y);
+        result.put("Z", z);
+        result.put("Yaw", yaw);
+        result.put("Pitch", pitch);
+
+        return result;
+    }
+
+    public static Home deserialize(Map<String, Object> map) {
+        String name = (String) map.get("Name");
+        long created = (long) map.get("Created");
+        String worldName = (String) map.get("World");
+        double x = (double) map.get("X");
+        double y = (double) map.get("Y");
+        double z = (double) map.get("Z");
+        float yaw = (float) ((double) map.get("Yaw"));
+        float pitch = (float) ((double) map.get("Pitch"));
+
+        return new Home(name, created, worldName, x, y, z, yaw, pitch);
     }
 
 }

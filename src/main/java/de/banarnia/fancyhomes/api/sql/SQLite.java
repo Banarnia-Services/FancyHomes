@@ -16,7 +16,7 @@ public class SQLite extends Database {
     }
 
     @Override
-    public boolean openConnection() {
+    public boolean openConnection(boolean silent) {
         if (!databaseFile.exists()) {
             databaseFile.getParentFile().mkdirs();
             try {
@@ -30,7 +30,8 @@ public class SQLite extends Database {
             if (connection != null && !connection.isClosed())
                 return true;
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            if (!silent)
+                throwables.printStackTrace();
             logger.warning("Error while connecting to database '" + databaseName + "'.");
             return false;
         }
@@ -38,14 +39,16 @@ public class SQLite extends Database {
         try {
             Class.forName("org.sqlite.JDBC");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            if (!silent)
+                e.printStackTrace();
             logger.warning("Cannot open connection to mysql server - jdbc driver missing.");
             return false;
         }
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFile);
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            if (!silent)
+                throwables.printStackTrace();
             logger.warning("Error while connecting to database '" + databaseName + "'.");
             return false;
         }

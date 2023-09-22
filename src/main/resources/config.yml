@@ -16,16 +16,18 @@ cooldown-time: 0
 # Maximum amount of homes.
 max-homes: 1
 
-# Storage method. Choose from following options:
-# - SQLite (does not require any additional configuration or software)
-# - MySQL
-storage-method: SQLite
+# Storage method. Define where the home data should be stored:
+# - File (yml-files in the 'data' folder)
+# - MySQL (not supported yet)
+storage-method: File
 
-# MySQL connection details.
-# Ignore this if you are using SQLite.
+# MySQL configuration. Skip this if you do not use MySQL as storage method.
 mysql:
   host: 127.0.0.1
   port: 3306
   database: database
   user: user
   password: password
+
+# Enable debug messages.
+debug: false

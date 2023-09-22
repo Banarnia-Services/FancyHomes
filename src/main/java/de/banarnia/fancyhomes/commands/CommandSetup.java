@@ -3,19 +3,17 @@ package de.banarnia.fancyhomes.commands;
 import co.aikar.commands.CommandManager;
 import co.aikar.commands.InvalidCommandArgument;
 import de.banarnia.fancyhomes.FancyHomesAPI;
-import de.banarnia.fancyhomes.data.Home;
+import de.banarnia.fancyhomes.data.storage.Home;
 import de.banarnia.fancyhomes.lang.Message;
-import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CommandSetup {
 
     public static void initCommandCompletion(CommandManager manager) {
         manager.getCommandCompletions().registerCompletion("homes", c -> {
             if (c.getIssuer().isPlayer())
-                return FancyHomesAPI.get().getHomes((Player) c.getIssuer()).keySet();
+                return FancyHomesAPI.get().getHomeNames(c.getIssuer().getUniqueId()).join();
 
             return new ArrayList<>();
         });
@@ -27,7 +25,7 @@ public class CommandSetup {
                 throw new InvalidCommandArgument(Message.COMMAND_ERROR_CONSOLE_NOT_SUPPORTED.get());
 
             String tag = c.popFirstArg();
-            Home home = FancyHomesAPI.get().getHome((Player) c.getIssuer(), tag);
+            Home home = FancyHomesAPI.get().getHome(c.getIssuer().getUniqueId(), tag).join();
             if (home != null)
                 return home;
             else

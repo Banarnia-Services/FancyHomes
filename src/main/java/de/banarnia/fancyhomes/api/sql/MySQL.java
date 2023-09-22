@@ -21,12 +21,13 @@ public class MySQL extends Database {
     }
 
     @Override
-    public boolean openConnection() {
+    public boolean openConnection(boolean silent) {
         try {
             if (connection != null && !connection.isClosed())
                 return true;
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            if (!silent)
+                throwables.printStackTrace();
             logger.warning("Error while connecting to database '" + databaseName + "'.");
             return false;
         }
@@ -34,7 +35,8 @@ public class MySQL extends Database {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            if (!silent)
+                e.printStackTrace();
             logger.warning("Cannot open connection to mysql server - jdbc driver missing.");
             return false;
         }
@@ -44,7 +46,8 @@ public class MySQL extends Database {
                             + "?useJDBCCompliantTimezoneShift=true&serverTimezone=Europe/Berlin&useUnicode=true&autoReconnect=true",
                     this.user, this.password);
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            if (!silent)
+                throwables.printStackTrace();
             logger.warning("Error while connecting to database '" + databaseName + "'.");
             return false;
         }

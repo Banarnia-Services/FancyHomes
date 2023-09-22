@@ -50,9 +50,16 @@ public abstract class Database {
 
     /**
      * Establish a connection to the database.
+     * @param silent Print exceptions.
      * @return True if connected successfully, else false.
      */
-    public abstract boolean openConnection();
+    public abstract boolean openConnection(boolean silent);
+
+    /**
+     * Establish a connection to the database.
+     * @return True if connected successfully, else false.
+     */
+    public boolean openConnection() {return openConnection(false);}
 
     /**
      * Execute a sql update.
@@ -74,6 +81,7 @@ public abstract class Database {
         openConnection();
         if (sql == null || sql.length() == 0) return false;
 
+        boolean success = true;
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -86,28 +94,23 @@ public abstract class Database {
             ex.printStackTrace();
             logger.warning("Error while sending an mysql update:");
             logger.warning("Statement: " + sql);
+            success = false;
         } finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } catch (Exception ex) {
-
-
-            }
+            } catch (Exception ex) {}
         }
 
-        return true;
+        return success;
     }
 
     /**
      * Execute an update on another thread.
      * @param sql Sql statement.
      */
-    public void executeUpdateAsync(String sql) {
-        CompletableFuture.runAsync(() -> {
-            openConnection();
-            executeUpdate(sql);
-        });
+    public CompletableFuture<Boolean> executeUpdateAsync(String sql) {
+        return executeUpdateAsync(sql, null);
     }
 
     /**
@@ -115,11 +118,8 @@ public abstract class Database {
      * @param sql Sql statement.
      * @param objects Objects to insert.
      */
-    public void executeUpdateAsync(String sql, Object... objects) {
-        CompletableFuture.runAsync(() -> {
-            openConnection();
-            executeUpdate(sql, objects);
-        });
+    public CompletableFuture<Boolean> executeUpdateAsync(String sql, Object... objects) {
+        return CompletableFuture.supplyAsync(() -> executeUpdate(sql, objects));
     }
 
     /**
@@ -164,10 +164,7 @@ public abstract class Database {
      * @return Result.
      */
     public CompletableFuture<ResultSet> executeQueryAsync(String sql) {
-        return CompletableFuture.supplyAsync(() -> {
-            openConnection();
-            return executeQuery(sql);
-        });
+        return executeQueryAsync(sql, null);
     }
 
     /**
@@ -177,26 +174,23 @@ public abstract class Database {
      * @return Result.
      */
     public CompletableFuture<ResultSet> executeQueryAsync(String sql, Object... objects) {
-        return CompletableFuture.supplyAsync(() -> {
-            openConnection();
-            return executeQuery(sql, objects);
-        });
+        return CompletableFuture.supplyAsync(() -> executeQuery(sql, objects));
     }
 
     /**
      * Deletes a mysql table async.
      * @param name Table.
      */
-    public void deleteTable(String name) {
-        executeUpdateAsync("DROP TABLE '" + name + "';");
+    public CompletableFuture<Boolean> deleteTable(String name) {
+        return executeUpdateAsync("DROP TABLE '" + name + "';");
     }
 
     /**
      * Reset a mysql table.
      * @param name Table.
      */
-    public void clearTable(String name) {
-        executeUpdateAsync("TRUNCATE TABLE '" + name + "';");
+    public CompletableFuture<Boolean> clearTable(String name) {
+        return executeUpdateAsync("TRUNCATE TABLE '" + name + "';");
     }
 
 
