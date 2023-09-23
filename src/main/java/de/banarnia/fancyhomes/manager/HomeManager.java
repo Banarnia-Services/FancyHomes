@@ -51,8 +51,8 @@ public class HomeManager implements FancyHomesAPI {
         if (cooldown <= 0 || player.hasPermission("fancyhomes.cooldown.bypass"))
             return;
 
-        cooldowns.put(player.getUniqueId(), (System.currentTimeMillis() + (long) (cooldown * 1000)));
-        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> cooldowns.remove(player.getUniqueId()), (long) (20 * cooldown));
+        cooldowns.put(player.getUniqueId(), (System.currentTimeMillis() + (long) (cooldown * 1000.0)));
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> cooldowns.remove(player.getUniqueId()), (long) (20.0 * cooldown));
     }
 
     public void startWarmup(Player player, Home home) {
@@ -80,7 +80,7 @@ public class HomeManager implements FancyHomesAPI {
 
             warmups.remove(player.getUniqueId());
             startCooldown(player);
-        });
+        }, (long)(20.0 * warmup));
         warmups.put(player.getUniqueId(), taskId);
     }
 
@@ -129,12 +129,12 @@ public class HomeManager implements FancyHomesAPI {
 
     @Override
     public boolean hasCooldown(Player player) {
-        return cooldowns.containsKey(player);
+        return cooldowns.containsKey(player.getUniqueId());
     }
 
     @Override
     public boolean isInWarmup(Player player) {
-        return warmups.containsKey(player);
+        return warmups.containsKey(player.getUniqueId());
     }
 
     @Override

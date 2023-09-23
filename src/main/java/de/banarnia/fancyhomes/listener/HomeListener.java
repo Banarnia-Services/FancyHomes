@@ -39,10 +39,13 @@ public class HomeListener implements Listener {
         if (event.isCancelled())
             return;
 
+        if (!manager.isInWarmup(event.getPlayer()))
+            return;
+
         // Skip if player is only moving his mouse.
-        if (event.getFrom().getX() == event.getTo().getX() &&
-            event.getFrom().getY() == event.getTo().getY() &&
-            event.getFrom().getZ() == event.getTo().getZ())
+        if (event.getFrom().getBlock().getX() == event.getTo().getBlock().getX() &&
+            event.getFrom().getBlock().getY() == event.getTo().getBlock().getY() &&
+            event.getFrom().getBlock().getZ() == event.getTo().getBlock().getZ())
             return;
 
         manager.stopWarmup(event.getPlayer());
