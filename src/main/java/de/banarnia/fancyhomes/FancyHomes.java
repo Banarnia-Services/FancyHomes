@@ -65,7 +65,7 @@ public class FancyHomes extends JavaPlugin {
         Bukkit.getOnlinePlayers().forEach(player -> manager.getHomeData(player.getUniqueId()));
     }
 
-    protected static FancyHomes getInstance() {
+    public static FancyHomes getInstance() {
         return instance;
     }
 

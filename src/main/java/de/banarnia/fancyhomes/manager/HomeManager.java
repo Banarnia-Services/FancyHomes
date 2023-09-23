@@ -2,6 +2,7 @@ package de.banarnia.fancyhomes.manager;
 
 import de.banarnia.fancyhomes.FancyHomes;
 import de.banarnia.fancyhomes.FancyHomesAPI;
+import de.banarnia.fancyhomes.api.permissions.PermissionManager;
 import de.banarnia.fancyhomes.api.sql.Database;
 import de.banarnia.fancyhomes.api.sql.MySQL;
 import de.banarnia.fancyhomes.config.HomeConfig;
@@ -119,6 +120,10 @@ public class HomeManager implements FancyHomesAPI {
 
     @Override
     public int getHomeLimit(UUID playerId) {
+        if (Bukkit.getPluginManager().getPlugin("LuckPerms") != null)
+            return PermissionManager.getMetaValue(playerId, "fancyhomes.limit",
+                    val -> Integer.parseInt(val), config.getMaxHomes());
+
         return config.getMaxHomes();
     }
 

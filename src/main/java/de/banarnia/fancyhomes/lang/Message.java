@@ -28,8 +28,12 @@ public enum Message implements ILanguage {
     COMMAND_INFO_HOME_WARMUP_STARTED("%prefix% You will be teleported in §e%time%s§7."),
     COMMAND_INFO_HOME_TELEPORT("%prefix% Teleporting to §e%home%§7..."),
     COMMAND_ERROR_HOME_NOT_SPECIFIED("%prefix% §cYou need to specify a home name."),
-    COMMAND_ERROR_HOME_LOCATION_NOT_LOADED("%prefix% §cYou can't teleport to this home because the world is not loaded.")
-
+    COMMAND_ERROR_HOME_LOCATION_NOT_LOADED("%prefix% §cYou can't teleport to this home because the world is not loaded."),
+    GUI_CONFIRMATION_TITLE("§7Delete home?"),
+    GUI_HOME_LEFTCLICK_TELEPORT("§eLeftclick to teleport"),
+    GUI_HOME_RIGHTCLICK_DELETE("§eRightclick to delete"),
+    GUI_HOME_PAGE_PREVIOUS("§cBack"),
+    GUI_HOME_PAGE_NEXT("§aNext")
     ;
 
     String defaultMessage, message;
