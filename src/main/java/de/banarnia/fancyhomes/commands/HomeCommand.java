@@ -3,21 +3,29 @@ package de.banarnia.fancyhomes.commands;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.CommandIssuer;
 import co.aikar.commands.annotation.*;
+import de.banarnia.fancyhomes.FancyHomes;
 import de.banarnia.fancyhomes.FancyHomesAPI;
+import de.banarnia.fancyhomes.api.UtilThread;
 import de.banarnia.fancyhomes.config.HomeConfig;
 import de.banarnia.fancyhomes.data.storage.Home;
 import de.banarnia.fancyhomes.lang.Message;
+import de.banarnia.fancyhomes.manager.ImportManager;
+import de.banarnia.fancyhomes.manager.ImportSource;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+
+import java.util.concurrent.CompletableFuture;
 
 @CommandAlias("home")
 public class HomeCommand extends BaseCommand {
 
     private FancyHomesAPI api = FancyHomesAPI.get();
     private HomeConfig config;
+    private ImportManager importManager;
 
-    public HomeCommand(HomeConfig config) {
+    public HomeCommand(HomeConfig config, ImportManager importManager) {
         this.config = config;
+        this.importManager = importManager;
     }
 
     @Default
@@ -68,6 +76,30 @@ public class HomeCommand extends BaseCommand {
     public void reload(CommandIssuer sender) {
         config.reload();
         sender.sendMessage(Message.COMMAND_INFO_HOME_CONFIG_RELOADED.get());
+    }
+
+    @Subcommand("import")
+    @CommandPermission("fancyhomes.import")
+    @CommandCompletion("@importSource")
+    public void importExternalHomes(CommandIssuer sender, ImportSource importSource) {
+        if (importSource == null)
+            return;
+
+        sender.sendMessage(Message.COMMAND_INFO_HOME_IMPORT_STARTED.replace("%source%", importSource.name()));
+
+        CompletableFuture.supplyAsync(() -> importManager.importExternalHomes(importSource))
+                .thenAccept(stats -> {
+                    UtilThread.runSync(FancyHomes.getInstance(), () -> {
+                        sender.sendMessage("§6Import finished");
+                        sender.sendMessage("§7Successful Imports: §a" + stats.getOverallSuccessfulImports());
+                        sender.sendMessage("§7Failed Imports: §c" + stats.getOverallFailedImports());
+                        sender.sendMessage("§7Errors: §e" + stats.isError());
+                        if (stats.isError())
+                            sender.sendMessage(stats.getErrorMessage());
+
+                        return stats.isError();
+                    });
+                });
     }
 
 }

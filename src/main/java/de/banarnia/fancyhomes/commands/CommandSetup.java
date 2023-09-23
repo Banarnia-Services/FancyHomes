@@ -5,8 +5,11 @@ import co.aikar.commands.InvalidCommandArgument;
 import de.banarnia.fancyhomes.FancyHomesAPI;
 import de.banarnia.fancyhomes.data.storage.Home;
 import de.banarnia.fancyhomes.lang.Message;
+import de.banarnia.fancyhomes.manager.ImportSource;
+import de.banarnia.fancyhomes.manager.ImportStats;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CommandSetup {
 
@@ -17,6 +20,8 @@ public class CommandSetup {
 
             return new ArrayList<>();
         });
+        manager.getCommandCompletions().registerCompletion("importSource",
+                c -> Arrays.stream(ImportSource.values()).map(ImportSource::name).toList());
     }
 
     public static void initCommandContext(CommandManager manager) {
@@ -30,6 +35,19 @@ public class CommandSetup {
                 return home;
             else
                 throw new InvalidCommandArgument(Message.COMMAND_ERROR_HOME_NOT_FOUND.replace("%home%", tag));
+        });
+
+        manager.getCommandContexts().registerContext(ImportSource.class, c -> {
+            String tag = c.popFirstArg();
+            ImportSource source = null;
+            for (ImportSource importSource : ImportSource.values())
+                if (importSource.name().equalsIgnoreCase(tag))
+                    source = importSource;
+
+            if (source != null)
+                return source;
+            else
+                throw new InvalidCommandArgument(Message.COMMAND_ERROR_HOME_IMPORT_INVALID_IMPORTSOURCE.get());
         });
     }
 

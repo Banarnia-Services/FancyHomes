@@ -32,6 +32,18 @@ public abstract class HomeStorage implements HomeData {
         return playerId;
     }
 
+    @Override
+    public CompletableFuture<Boolean> addHome(Home home) {
+        if (home == null || hasHome(home.getName()))
+            return CompletableFuture.completedFuture(false);
+
+        return saveHomeInStorage(home).thenApply(saved -> {
+            if (saved)
+                homes.put(home.getName(), home);
+            return saved;
+        });
+    }
+
     /**
      * Tries to add a new home.
      * @param name Home name.

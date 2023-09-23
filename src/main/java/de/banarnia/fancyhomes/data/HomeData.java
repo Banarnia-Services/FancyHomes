@@ -30,6 +30,13 @@ public interface HomeData {
     CompletableFuture<Boolean> addHome(String name, Location location);
 
     /**
+     * Tries to add a new home.
+     * @param home Home instance.
+     * @return True if home was created, else false.
+     */
+    CompletableFuture<Boolean> addHome(Home home);
+
+    /**
      * Update a homes location and creation timestamp.
      * @param homeName Home name.
      * @param newLocation New home location.
