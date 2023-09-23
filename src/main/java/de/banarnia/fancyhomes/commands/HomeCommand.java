@@ -23,8 +23,10 @@ public class HomeCommand extends BaseCommand {
     @Default
     @CommandCompletion("@homes")
     public void home(Player sender, @Optional Home home) {
-        if (home != null)
+        if (home != null) {
             api.teleport(sender, home);
+            return;
+        }
 
         api.getHomeMap(sender.getUniqueId()).thenAccept(map -> {
             Home targetHome = map.get("Default");
