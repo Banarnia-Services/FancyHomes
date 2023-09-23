@@ -6,7 +6,7 @@
 
     <groupId>de.banarnia</groupId>
     <artifactId>FancyHomes</artifactId>
-    <version>1.1</version>
+    <version>1.2-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>20</maven.compiler.source>
@@ -54,6 +54,12 @@
             <version>5.4</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>3.0.2</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -96,6 +102,10 @@
                         <relocation>
                             <pattern>com.github.stefvanschie.inventoryframework</pattern>
                             <shadedPattern>de.banarnia.fancyhomes.inventoryframework</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>org.bstats</pattern>
+                            <shadedPattern>de.banarnia.fancyhomes</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>

@@ -13,6 +13,7 @@ import de.banarnia.fancyhomes.data.storage.Home;
 import de.banarnia.fancyhomes.lang.Message;
 import de.banarnia.fancyhomes.listener.HomeListener;
 import de.banarnia.fancyhomes.manager.HomeManager;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -40,6 +41,10 @@ public class FancyHomes extends JavaPlugin {
     @Override
     public void onEnable() {
         super.onEnable();
+
+        // BStats
+        int pluginId = 19868;
+        Metrics metrics = new Metrics(this, pluginId);
 
         this.commandManager = new BukkitCommandManager(this);
         commandManager.usePerIssuerLocale(true);
