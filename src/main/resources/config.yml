@@ -1,7 +1,7 @@
 # Config version: Do not touch this.
 version: 1.0
 
-# Language file. Will to for a file called <ARG>.yml in the lang folder.
+# Language file. Will look for a file called <ARG>.yml in the lang folder.
 # If the file does not exist, it will be automatically created for you to edit.
 # Example: 'en' will look for /lang/en.yml
 language: en
@@ -18,7 +18,7 @@ max-homes: 1
 
 # Storage method. Define where the home data should be stored:
 # - File (yml-files in the 'data' folder)
-# - MySQL (not supported yet)
+# - MySQL
 storage-method: File
 
 # MySQL configuration. Skip this if you do not use MySQL as storage method.
