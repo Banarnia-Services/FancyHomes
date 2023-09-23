@@ -2,7 +2,9 @@ package de.banarnia.fancyhomes;
 
 import co.aikar.commands.BukkitCommandManager;
 import co.aikar.commands.CommandManager;
+import de.banarnia.fancyhomes.api.UtilFile;
 import de.banarnia.fancyhomes.api.config.Config;
+import de.banarnia.fancyhomes.api.config.YamlConfig;
 import de.banarnia.fancyhomes.api.config.YamlVersionConfig;
 import de.banarnia.fancyhomes.api.lang.LanguageHandler;
 import de.banarnia.fancyhomes.commands.*;
@@ -14,6 +16,9 @@ import de.banarnia.fancyhomes.manager.HomeManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
+import java.io.IOException;
 
 public class FancyHomes extends JavaPlugin {
 
@@ -43,6 +48,9 @@ public class FancyHomes extends JavaPlugin {
                                     "config.yml", "1.0");
         this.homeConfig = new HomeConfig(this, config);
 
+        File langFolder = new File(getDataFolder(), "lang");
+        YamlConfig.fromResource(this, "lang/en.yml", langFolder, "en.yml");
+        YamlConfig.fromResource(this, "lang/de.yml", langFolder, "de.yml");
         this.languageHandler = new LanguageHandler(this, homeConfig.getLanguage());
         this.languageHandler.register(Message.class);
 

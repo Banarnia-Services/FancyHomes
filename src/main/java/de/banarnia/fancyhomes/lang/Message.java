@@ -25,13 +25,13 @@ public enum Message implements ILanguage {
     COMMAND_ERROR_SETHOME_LIMIT_EXCEEDED("%prefix% §cYou can't edit any homes because you exceeded the home limit."),
     COMMAND_INFO_SETHOME_RELOCATED("%prefix% You relocated the home §e%home% §7to your current location."),
     COMMAND_ERROR_SETHOME_RELOCATION_FAILED("%prefix% §cFailed to relocate the home."),
-    COMMAND_ERROR_SETHOME_CANCELED("%prefix% §cYou cannot create the home §e%home% §7cright now."),
+    COMMAND_ERROR_SETHOME_CANCELED("%prefix% §cYou cannot create the home §e%home% §cright now."),
     COMMAND_INFO_SETHOME_CREATED("%prefix% Successfully created a new home §e%home%§7."),
     COMMAND_ERROR_SETHOME_FAILED("%prefix% §cFailed to create a new home."),
 
     // COMMAND /delhome
     COMMAND_INFO_DELHOME_SUCCESS("%prefix% Successfully deleted the home §e%home%§7."),
-    COMMAND_ERROR_DELHOME_CANCELED("%prefix% §cYou cannot delete the home §e%home% §7cright now."),
+    COMMAND_ERROR_DELHOME_CANCELED("%prefix% §cYou cannot delete the home §e%home% §cright now."),
     COMMAND_ERROR_DELHOME_FAILED("%prefix% §cFailed to delete the home."),
 
     // GUI
