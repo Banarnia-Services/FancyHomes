@@ -6,7 +6,7 @@
 
     <groupId>de.banarnia</groupId>
     <artifactId>FancyHomes</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 
     <properties>
         <maven.compiler.source>20</maven.compiler.source>
