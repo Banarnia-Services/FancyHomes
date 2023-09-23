@@ -19,7 +19,7 @@ public class DelhomeCommand extends BaseCommand {
     }
 
     @Subcommand("others")
-    @CommandPermission("fancyhomes.delete.others")
+    @CommandPermission("fancyhomes.others")
     @CommandCompletion("@players @nothing")
     public void delHome(Player sender, OfflinePlayer target, String homeName) {
         api.deleteHome(sender, target.getUniqueId(), homeName);

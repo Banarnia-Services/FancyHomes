@@ -18,7 +18,7 @@ public class SethomeCommand extends BaseCommand {
     }
 
     @Subcommand("others")
-    @CommandPermission("fancyhomes.sethome.others")
+    @CommandPermission("fancyhomes.others")
     @CommandCompletion("@players @nothing")
     public void setHome(Player sender, OfflinePlayer target, @Optional @Single String homeName) {
         api.addHome(sender, target.getUniqueId(), homeName, sender.getLocation());
