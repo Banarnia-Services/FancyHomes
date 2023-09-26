@@ -2,6 +2,7 @@ package de.banarnia.fancyhomes.gui;
 
 import de.banarnia.fancyhomes.FancyHomes;
 import de.banarnia.fancyhomes.FancyHomesAPI;
+import de.banarnia.fancyhomes.api.UtilGUI;
 import de.banarnia.fancyhomes.api.UtilItem;
 import de.banarnia.fancyhomes.api.UtilThread;
 import de.banarnia.fancyhomes.data.HomeData;
@@ -30,7 +31,7 @@ public class HomeGUI {
     public HomeGUI(String title, HomeData data) {
         this.data = data;
         this.target = Bukkit.getOfflinePlayer(data.getUuid());
-        this.gui = Gui.paginated().title(Legacy.SERIALIZER.deserialize(title)).rows(2).create();
+        this.gui = Gui.paginated().title(Legacy.SERIALIZER.deserialize(title)).rows(2).pageSize(9).create();
         this.gui.setDefaultClickAction(event -> event.setCancelled(true));
         this.gui.setOpenGuiAction(event -> init());
     }
@@ -47,6 +48,8 @@ public class HomeGUI {
             gui.addItem(getHomeItem(home));
         }
 
+        UtilGUI.setPaginationItems(gui, Message.GUI_HOME_PAGE_PREVIOUS.get(), Message.GUI_HOME_PAGE_NEXT.get());
+
         gui.update();
     }
 
@@ -61,7 +64,7 @@ public class HomeGUI {
     }
 
     private GuiItem getHomeItem(Home home) {
-        GuiItem guiItem = new GuiItem(home.getIcon());
+        GuiItem guiItem = new GuiItem(home.buildIcon());
         guiItem.setAction(click -> {
             Player player = (Player) click.getWhoClicked();
             if (click.isLeftClick()) {
