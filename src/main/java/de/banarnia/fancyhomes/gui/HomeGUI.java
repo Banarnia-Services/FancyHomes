@@ -45,7 +45,7 @@ public class HomeGUI {
             gui.addItem(getHomeItem(home));
         }
 
-
+        gui.update();
     }
 
     private GuiItem getInfoItem() {
