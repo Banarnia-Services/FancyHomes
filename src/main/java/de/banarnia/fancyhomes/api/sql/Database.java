@@ -1,5 +1,6 @@
 package de.banarnia.fancyhomes.api.sql;
 
+import lombok.Getter;
 import org.bukkit.Bukkit;
 
 import java.sql.Connection;
@@ -11,6 +12,7 @@ import java.util.logging.Logger;
 
 public abstract class Database {
 
+    @Getter
     protected String databaseName;
     protected Connection connection;
     protected Logger logger;

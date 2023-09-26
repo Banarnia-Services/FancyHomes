@@ -4,7 +4,6 @@ import de.banarnia.fancyhomes.FancyHomes;
 import de.banarnia.fancyhomes.api.sql.MySQL;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.OfflinePlayer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,6 +28,7 @@ public class HomeMySQLStorage extends HomeStorage {
             "Player varchar(16)," +
             "Name varchar(20) NOT NULL," +
             "Created timestamp NOT NULL DEFAULT NOW()," +
+            "Icon varchar(20)," +
             "World varchar(36) NOT NULL," +
             "X double NOT NULL," +
             "Y double NOT NULL," +
@@ -37,6 +37,27 @@ public class HomeMySQLStorage extends HomeStorage {
             "Pitch float NOT NULL," +
             "PRIMARY KEY (ID)" +
             ");")
+            .thenApplyAsync(success -> {
+                if (success) {
+                    ResultSet rs = database.executeQuery("SELECT Icon " +
+                            "FROM INFORMATION_SCHEMA.COLUMNS " +
+                            "WHERE TABLE_SCHEMA=? " +
+                            "AND TABLE_NAME=fancyhomes_data " +
+                            "AND COLUMN_NAME=Icon;", database.getDatabaseName());
+                    try {
+                        if (!rs.next())
+                            database.executeUpdate("ALTER TABLE fancyhomes_data ADD COLUMN Icon varchar(20) AFTER Created;");
+                    } catch (SQLException e) {
+                    } finally {
+                        try {
+                            rs.close();
+                        } catch (SQLException e) {
+                        }
+                    }
+                }
+
+                return success;
+            })
             .thenApply(success -> Bukkit.getOfflinePlayer(playerId))
             .thenApplyAsync(op -> {
                 if (op == null)
@@ -54,6 +75,7 @@ public class HomeMySQLStorage extends HomeStorage {
                         while (resultSet.next()) {
                             String name = resultSet.getString("Name");
                             Timestamp created = resultSet.getTimestamp("Created");
+                            String icon = resultSet.getString("Icon");
                             String worldName = resultSet.getString("World");
                             double x = resultSet.getDouble("X");
                             double y = resultSet.getDouble("Y");
@@ -61,7 +83,7 @@ public class HomeMySQLStorage extends HomeStorage {
                             float yaw = resultSet.getFloat("Yaw");
                             float pitch = resultSet.getFloat("Pitch");
 
-                            Home home = new Home(name, created.getTime(), worldName, x, y, z, yaw, pitch);
+                            Home home = new Home(name, created.getTime(), icon, worldName, x, y, z, yaw, pitch);
                             homes.put(name, home);
                         }
 
@@ -76,6 +98,7 @@ public class HomeMySQLStorage extends HomeStorage {
     protected CompletableFuture<Boolean> saveHomeInStorage(Home home) {
         String name = home.getName();
         Timestamp created = home.getSqlTimestamp();
+        String icon = home.getIcon();
         String worldName = home.getWorldName();
         double x = home.getX();
         double y = home.getY();
@@ -84,8 +107,8 @@ public class HomeMySQLStorage extends HomeStorage {
         float pitch = home.getPitch();
 
         return database.executeUpdateAsync("INSERT INTO fancyhomes_data VALUES (" +
-                    "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" +
-                    ");", null, playerId.toString(), getPlayerName(), name, created, worldName, x, y, z, yaw, pitch);
+                    "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" +
+                    ");", null, playerId.toString(), getPlayerName(), name, created, icon, worldName, x, y, z, yaw, pitch);
     }
 
     @Override
@@ -104,8 +127,16 @@ public class HomeMySQLStorage extends HomeStorage {
         float yaw = location.getYaw();
         float pitch = location.getPitch();
         return database.executeUpdateAsync("UPDATE fancyhomes_data SET " +
-                            "Created=?,World=?,X=?,Y=?,Z=?,Yaw=?,Pitch=?" +
-                            " WHERE UUID=? AND Name=?;",
+                            "Created=?,World=?,X=?,Y=?,Z=?,Yaw=?,Pitch=? " +
+                            "WHERE UUID=? AND Name=?;",
                 created, worldName, x, y, z, yaw, pitch, playerId.toString(), homeName);
+    }
+
+    @Override
+    protected CompletableFuture<Boolean> updateHomeIconInStorage(String homeName, String newIcon) {
+        return database.executeUpdateAsync("UPDATE fancyhomes_data SET " +
+                        "Icon=? " +
+                        "WHERE UUID=? AND Name=?;",
+                newIcon, playerId.toString(), homeName);
     }
 }

@@ -77,4 +77,14 @@ public class HomeFileStorage extends HomeStorage {
             return config.save();
         });
     }
+
+    @Override
+    protected CompletableFuture<Boolean> updateHomeIconInStorage(String homeName, String newIcon) {
+        Home home = getHome(homeName);
+        home.setIcon(newIcon);
+        return CompletableFuture.supplyAsync(() -> {
+            config.set("homes." + homeName, home);
+            return config.save();
+        });
+    }
 }

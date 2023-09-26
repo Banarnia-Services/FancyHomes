@@ -4,6 +4,7 @@ import de.banarnia.fancyhomes.api.UtilString;
 import de.banarnia.fancyhomes.lang.Message;
 import dev.triumphteam.gui.builder.item.ItemBuilder;
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -24,6 +25,9 @@ public class Home implements ConfigurationSerializable {
     private String name;
     @Getter
     private long created;
+    @Getter
+    @Setter
+    private String icon;
 
     @Getter
     private String worldName;
@@ -32,10 +36,11 @@ public class Home implements ConfigurationSerializable {
     @Getter
     private float yaw, pitch;
 
-    public Home(String name, long created,
+    public Home(String name, long created, String icon,
                 String worldName, double x, double y, double z, float yaw, float pitch) {
         this.name = name;
         this.created = created;
+        this.icon = icon;
         this.worldName = worldName;
         this.x = x;
         this.y = y;
@@ -128,18 +133,22 @@ public class Home implements ConfigurationSerializable {
         return World.Environment.NORMAL;
     }
 
-    public ItemStack getIcon() {
-        Material material = Material.GRASS_BLOCK;
-        switch (getWorldEnvironment()) {
-            case CUSTOM:
-                material = Material.QUARTZ_BLOCK;
-                break;
-            case NETHER:
-                material = Material.NETHERRACK;
-                break;
-            case THE_END:
-                material = Material.END_STONE;
-                break;
+    public ItemStack buildIcon() {
+        Material material = icon != null ? Material.getMaterial(icon) : null;
+        if (material == null) {
+            switch (getWorldEnvironment()) {
+                case CUSTOM:
+                    material = Material.QUARTZ_BLOCK;
+                    break;
+                case NETHER:
+                    material = Material.NETHERRACK;
+                    break;
+                case THE_END:
+                    material = Material.END_STONE;
+                    break;
+                default:
+                    material = Material.GRASS_BLOCK;
+            }
         }
 
         ItemBuilder builder = ItemBuilder.from(material);
@@ -159,6 +168,8 @@ public class Home implements ConfigurationSerializable {
         HashMap<String, Object> result = new LinkedHashMap<>();
         result.put("Name", name);
         result.put("Created", created);
+        if (icon != null)
+            result.put("Icon", icon);
         result.put("World", worldName);
         result.put("X", x);
         result.put("Y", y);
@@ -172,6 +183,9 @@ public class Home implements ConfigurationSerializable {
     public static Home deserialize(Map<String, Object> map) {
         String name = (String) map.get("Name");
         long created = (long) map.get("Created");
+        String icon = null;
+        if (map.containsKey("Icon"))
+            icon = (String) map.get("Icon");
         String worldName = (String) map.get("World");
         double x = (double) map.get("X");
         double y = (double) map.get("Y");
@@ -179,7 +193,7 @@ public class Home implements ConfigurationSerializable {
         float yaw = (float) ((double) map.get("Yaw"));
         float pitch = (float) ((double) map.get("Pitch"));
 
-        return new Home(name, created, worldName, x, y, z, yaw, pitch);
+        return new Home(name, created, icon, worldName, x, y, z, yaw, pitch);
     }
 
 }

@@ -61,7 +61,7 @@ public abstract class HomeStorage implements HomeData {
         float yaw = location.getYaw();
         float pitch = location.getPitch();
 
-        Home home = new Home(name, System.currentTimeMillis(), worldName, x, y, z, yaw, pitch);
+        Home home = new Home(name, System.currentTimeMillis(), null, worldName, x, y, z, yaw, pitch);
         return saveHomeInStorage(home).thenApply(saved -> {
             if (saved)
                 homes.put(name, home);
@@ -78,6 +78,19 @@ public abstract class HomeStorage implements HomeData {
             Home home = getHome(homeName);
             if (success)
                 home.updateLocation(newLocation, timestamp);
+
+            return success;
+        });
+    }
+
+    public CompletableFuture<Boolean> updateHome(String homeName, String newIcon) {
+        if (!hasHome(homeName))
+            return CompletableFuture.completedFuture(false);
+
+        return updateHomeIconInStorage(homeName, newIcon).thenApply(success -> {
+            Home home = getHome(homeName);
+            if (success)
+                home.setIcon(newIcon);
 
             return success;
         });
@@ -136,6 +149,14 @@ public abstract class HomeStorage implements HomeData {
      * @return True if update was successful, else false.
      */
     protected abstract CompletableFuture<Boolean> updateHomeLocationInStorage(String homeName, Location location, long timestamp);
+
+    /**
+     * Update the location of a home in the storage.
+     * @param homeName Home name.
+     * @param newIcon New home icon.
+     * @return True if update was successful, else false.
+     */
+    protected abstract CompletableFuture<Boolean> updateHomeIconInStorage(String homeName, String newIcon);
 
 
 }
