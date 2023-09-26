@@ -1,41 +1,53 @@
 Message:
-  prefix: '§8[§6FancyHomes§8]§7'
-  command-error-console-not-supported: '%prefix% §cThis command may not be executed
-    by console.'
-  command-info-home-config-reloaded: '%prefix% The config has been reloaded.'
-  command-info-home-teleport: '%prefix% Teleporting to §e%home%§7...'
-  command-info-home-warmup-started: '%prefix% You will be teleported in §e%time%s§7.'
-  command-error-home-canceled: '%prefix% §cYou cannot do that right now.'
-  command-error-home-not-found: '%prefix% §cCould not find a home with the name §e%home%§c.'
-  command-error-home-empty: '%prefix% §cYou do not have any homes.'
-  command-error-home-others-not-found: '%prefix% §cCould not find a home with the
-    name §e%home%§7 for player §e%player%§7.'
-  command-error-home-limit-exceeded: '%prefix% §cYou can''t use any homes because
-    you exceeded the home limit.'
-  command-error-home-cooldown: '%prefix% §cYou can''t do that again within the next
-    §e%time%s§c.'
-  command-error-home-warmup-abort: '%prefix% §eTeleport aborted...'
-  command-error-home-not-specified: '%prefix% §cYou need to specify a home name.'
-  command-error-home-location-not-loaded: '%prefix% §cYou can''t teleport to this
-    home because the world is not loaded.'
-  command-info-home-import-started: '%prefix% §7Starting import from §e%source%§7.'
-  command-error-home-import-invalid-importsource: '§cThis source is not implemented.'
-  command-error-sethome-limit-reached: '%prefix% §cYou don''t have any homes left.'
-  command-error-sethome-limit-exceeded: '%prefix% §cYou can''t edit any homes because
-    you exceeded the home limit.'
-  command-info-sethome-relocated: '%prefix% You relocated the home §e%home% §7to your
-    current location.'
-  command-error-sethome-relocation-failed: '%prefix% §cFailed to relocate the home.'
-  command-error-sethome-canceled: '%prefix% §cYou cannot create the home §e%home%
-    §cright now.'
-  command-info-sethome-created: '%prefix% Successfully created a new home §e%home%§7.'
-  command-error-sethome-failed: '%prefix% §cFailed to create a new home.'
-  command-info-delhome-success: '%prefix% Successfully deleted the home §e%home%§7.'
-  command-error-delhome-canceled: '%prefix% §cYou cannot delete the home §e%home%
-    §cright now.'
-  command-error-delhome-failed: '%prefix% §cFailed to delete the home.'
+  prefix: §8[§6FancyHomes§8]§7
+  command-error-console-not-supported:
+    "%prefix% §cThis command may not be executed
+    by console."
+  command-info-home-config-reloaded: "%prefix% The config has been reloaded."
+  command-info-home-teleport: "%prefix% Teleporting to §e%home%§7..."
+  command-info-home-warmup-started: "%prefix% You will be teleported in §e%time%s§7."
+  command-error-home-canceled: "%prefix% §cYou cannot do that right now."
+  command-error-home-not-found: "%prefix% §cCould not find a home with the name §e%home%§c."
+  command-error-home-empty: "%prefix% §cYou do not have any homes."
+  command-error-home-others-not-found:
+    "%prefix% §cCould not find a home with the
+    name §e%home%§7 for player §e%player%§7."
+  command-error-home-limit-exceeded: "%prefix% §cYou can't use any homes because
+    you exceeded the home limit."
+  command-error-home-cooldown:
+    "%prefix% §cYou can't do that again within the next
+    §e%time%s§c."
+  command-error-home-warmup-abort: "%prefix% §eTeleport aborted..."
+  command-error-home-not-specified: "%prefix% §cYou need to specify a home name."
+  command-error-home-location-not-loaded: "%prefix% §cYou can't teleport to this
+    home because the world is not loaded."
+  command-info-home-import-started: "%prefix% §7Starting import from §e%source%§7."
+  command-error-home-import-invalid-importsource: §cThis source is not implemented.
+  command-error-sethome-limit-reached: "%prefix% §cYou don't have any homes left."
+  command-error-sethome-limit-exceeded:
+    "%prefix% §cYou can't edit any homes because
+    you exceeded the home limit."
+  command-info-sethome-relocated:
+    "%prefix% You relocated the home §e%home% §7to your
+    current location."
+  command-error-sethome-relocation-failed: "%prefix% §cFailed to relocate the home."
+  command-error-sethome-canceled:
+    "%prefix% §cYou cannot create the home §e%home%
+    §cright now."
+  command-info-sethome-created: "%prefix% Successfully created a new home §e%home%§7."
+  command-error-sethome-failed: "%prefix% §cFailed to create a new home."
+  command-info-delhome-success: "%prefix% Successfully deleted the home §e%home%§7."
+  command-error-delhome-canceled:
+    "%prefix% §cYou cannot delete the home §e%home%
+    §cright now."
+  command-error-delhome-failed: "%prefix% §cFailed to delete the home."
   gui-confirmation-title: '§7Delete home?'
   gui-home-leftclick-teleport: '§eLeftclick to teleport'
+  gui-home-shiftleftclick-edit-icon: '§eShift-Leftclick to edit the icon'
   gui-home-rightclick-delete: '§eRightclick to delete'
   gui-home-page-previous: '§cBack'
   gui-home-page-next: '§aNext'
+  gui-icon-selection-title: '§7Select a new icon'
+  gui-icon-update-failed: "%prefix% §cFailed to update the home icon."
+  gui-save-name: '§aSave'
+  gui-cancel-name: '§cCancel'
