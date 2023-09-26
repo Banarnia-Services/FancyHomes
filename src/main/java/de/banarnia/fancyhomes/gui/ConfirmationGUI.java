@@ -33,8 +33,8 @@ public class ConfirmationGUI {
         this.acceptItemLore = acceptItemLore;
         this.denyItemName = denyItemName != null ? denyItemName : "§4✖";
         this.denyItemLore = denyItemLore;
-        this.acceptSound = acceptSound != null ? acceptSound : Sound.ENTITY_EXPERIENCE_ORB_PICKUP;
-        this.denySound = denySound != null ? denySound : Sound.BLOCK_NOTE_BLOCK_BANJO;
+        this.acceptSound = acceptSound;
+        this.denySound = denySound;
         this.consumer = consumer;
 
         this.gui = Gui.gui(GuiType.HOPPER).title(Legacy.SERIALIZER.deserialize(title)).create();
@@ -44,11 +44,11 @@ public class ConfirmationGUI {
     }
 
     public ConfirmationGUI(String title, Consumer<Boolean> consumer) {
-        this(title, null, null, null, null, null, null, consumer);
+        this(title, null, null, null, null, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, Sound.BLOCK_NOTE_BLOCK_BANJO, consumer);
     }
 
     public ConfirmationGUI(String title, String acceptItemName, String denyItemName, Consumer<Boolean> consumer) {
-        this(title, acceptItemName, null, denyItemName, null, null, null, consumer);
+        this(title, acceptItemName, null, denyItemName, null, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, Sound.BLOCK_NOTE_BLOCK_BANJO, consumer);
     }
 
     public void init() {
@@ -79,7 +79,10 @@ public class ConfirmationGUI {
 
         Consumer<Boolean> consumer = this.consumer;
         this.consumer = null;
-        player.playSound(player, acceptSound, 1, 1);
+
+        if (this.acceptSound != null)
+            player.playSound(player, acceptSound, 1, 1);
+
         consumer.accept(true);
     }
 
@@ -87,7 +90,9 @@ public class ConfirmationGUI {
         if (this.consumer == null)
             return;
 
-        player.playSound(player, denySound, 1, 1);
+        if (this.denySound != null)
+            player.playSound(player, denySound, 1, 1);
+
         this.consumer.accept(false);
         this.consumer = null;
     }
