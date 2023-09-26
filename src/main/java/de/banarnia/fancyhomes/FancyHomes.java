@@ -17,6 +17,7 @@ import de.banarnia.fancyhomes.manager.ImportManager;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -80,6 +81,11 @@ public class FancyHomes extends JavaPlugin {
         commandManager.registerCommand(new DelhomeCommand());
 
         Bukkit.getOnlinePlayers().forEach(player -> manager.getHomeData(player.getUniqueId()));
+    }
+
+    @Override
+    public void onDisable() {
+        Bukkit.getOnlinePlayers().forEach(Player::closeInventory);
     }
 
     public static FancyHomes getInstance() {
