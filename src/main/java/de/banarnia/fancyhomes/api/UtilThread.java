@@ -1,5 +1,6 @@
 package de.banarnia.fancyhomes.api;
 
+import de.banarnia.fancyhomes.FancyHomes;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,5 +30,4 @@ public class UtilThread {
         };
         return runSync(plugin, c);
     }
-
 }
