@@ -45,6 +45,14 @@ public interface HomeData {
     CompletableFuture<Boolean> updateHome(String homeName, Location newLocation);
 
     /**
+     * Update a homes icon.
+     * @param homeName Home name.
+     * @param newIcon New home icon.
+     * @return True if home was updated, else false.
+     */
+    CompletableFuture<Boolean> updateHome(String homeName, String newIcon);
+
+    /**
      * Tries to delete a home.
      * @param name Home name.
      * @return True if home was deleted, else false.

@@ -158,6 +158,7 @@ public class Home implements ConfigurationSerializable {
                 "§7World: §e" + worldName,
                 " ",
                 Message.GUI_HOME_LEFTCLICK_TELEPORT.get(),
+                Message.GUI_HOME_SHIFTLEFTCLICK_EDIT_ICON.get(),
                 Message.GUI_HOME_RIGHTCLICK_DELETE.get());
 
         return builder.build();

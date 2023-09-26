@@ -1,5 +1,7 @@
 package de.banarnia.fancyhomes.gui;
 
+import de.banarnia.fancyhomes.api.UtilGUI;
+import de.banarnia.fancyhomes.lang.Message;
 import dev.triumphteam.gui.builder.item.ItemBuilder;
 import dev.triumphteam.gui.components.util.Legacy;
 import dev.triumphteam.gui.guis.Gui;
@@ -58,6 +60,8 @@ public class MaterialSelectionGUI {
     }
 
     private void init() {
+        gui.clearPageItems();
+
         gui.getFiller().fillBottom(ItemBuilder.from(Material.GRAY_STAINED_GLASS_PANE).setName(" ").asGuiItem());
 
         GuiItem acceptItem = ItemBuilder.from(Material.EMERALD)
@@ -76,7 +80,10 @@ public class MaterialSelectionGUI {
 
         for (Material material : Material.values()) {
             if (material == Material.AIR) continue;
+            gui.addItem(getMaterialItem(material));
         }
+
+        UtilGUI.setPaginationItems(gui, Message.GUI_HOME_PAGE_PREVIOUS.get(), Message.GUI_HOME_PAGE_NEXT.get());
     }
 
     private GuiItem getMaterialItem(Material material) {
@@ -91,6 +98,7 @@ public class MaterialSelectionGUI {
 
         return builder.asGuiItem(click -> {
             this.currentSelection = material;
+            init();
             gui.update();
         });
     }

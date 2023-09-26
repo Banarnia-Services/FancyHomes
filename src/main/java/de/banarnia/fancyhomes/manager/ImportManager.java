@@ -74,7 +74,7 @@ public class ImportManager {
                 float yaw = (float) section.getDouble(key + ".yaw");
                 float pitch = (float) section.getDouble(key + ".pitch");
 
-                Home home = new Home(key, System.currentTimeMillis(), world, x, y, z, yaw, pitch);
+                Home home = new Home(key, System.currentTimeMillis(), null, world, x, y, z, yaw, pitch);
                 boolean success = data.addHome(home).join();
                 if (success)
                     importStats.addSuccessfulImport(playerId);

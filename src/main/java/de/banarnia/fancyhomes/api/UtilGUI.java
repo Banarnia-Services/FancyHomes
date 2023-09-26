@@ -13,6 +13,7 @@ public class UtilGUI {
             event.setCancelled(true);
             gui.previous();
         }));
+
         gui.setItem(nextRow, nextCol, ItemBuilder.from(nextItem).asGuiItem(event -> {
             event.setCancelled(true);
             gui.next();

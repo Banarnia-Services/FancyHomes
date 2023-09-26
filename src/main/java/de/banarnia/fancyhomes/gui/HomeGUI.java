@@ -49,7 +49,6 @@ public class HomeGUI {
         }
 
         UtilGUI.setPaginationItems(gui, Message.GUI_HOME_PAGE_PREVIOUS.get(), Message.GUI_HOME_PAGE_NEXT.get());
-
         gui.update();
     }
 
@@ -68,6 +67,25 @@ public class HomeGUI {
         guiItem.setAction(click -> {
             Player player = (Player) click.getWhoClicked();
             if (click.isLeftClick()) {
+                if (click.isShiftClick()) {
+                    new MaterialSelectionGUI(Message.GUI_ICON_SELECTION_TITLE.get(), Material.getMaterial(home.getIcon()),
+                            Message.GUI_SAVE_NAME.get(), Message.GUI_CANCEL_NAME.get(), material -> {
+                        if (material == null || material.toString() == home.getIcon()) {
+                            open(player);
+                            return;
+                        }
+
+                        data.updateHome(home.getName(), material.toString())
+                                .thenAccept(success -> UtilThread.runSync(FancyHomes.getInstance(), () -> {
+                                    if (!success)
+                                        player.sendMessage(Message.GUI_ICON_UPDATE_FAILED.get());
+
+                                    return open(player);
+                                }));
+                    }).open(player);
+                    return;
+                }
+
                 FancyHomesAPI.get().teleport(player, home);
                 return;
             }

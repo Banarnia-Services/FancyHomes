@@ -5,6 +5,7 @@ import de.banarnia.fancyhomes.api.sql.MySQL;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
+import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -39,18 +40,17 @@ public class HomeMySQLStorage extends HomeStorage {
             ");")
             .thenApplyAsync(success -> {
                 if (success) {
-                    ResultSet rs = database.executeQuery("SELECT Icon " +
-                            "FROM INFORMATION_SCHEMA.COLUMNS " +
-                            "WHERE TABLE_SCHEMA=? " +
-                            "AND TABLE_NAME=fancyhomes_data " +
-                            "AND COLUMN_NAME=Icon;", database.getDatabaseName());
+                    ResultSet rs = null;
                     try {
+                        DatabaseMetaData md = database.getConnection().getMetaData();
+                        rs = md.getColumns(null, null, "fancyhomes_data", "Icon");
                         if (!rs.next())
                             database.executeUpdate("ALTER TABLE fancyhomes_data ADD COLUMN Icon varchar(20) AFTER Created;");
                     } catch (SQLException e) {
                     } finally {
                         try {
-                            rs.close();
+                            if (rs != null)
+                                rs.close();
                         } catch (SQLException e) {
                         }
                     }

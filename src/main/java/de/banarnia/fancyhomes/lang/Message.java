@@ -39,9 +39,14 @@ public enum Message implements ILanguage {
     COMMAND_ERROR_DELHOME_FAILED("%prefix% §cFailed to delete the home."),
 
     // GUI
+    GUI_ICON_SELECTION_TITLE("§7Select a new icon"),
+    GUI_SAVE_NAME("§aSave"),
+    GUI_CANCEL_NAME("§cCancel"),
+    GUI_ICON_UPDATE_FAILED("%prefix% §cFailed to update the home icon."),
     GUI_CONFIRMATION_TITLE("§7Delete home?"),
     GUI_HOME_LEFTCLICK_TELEPORT("§eLeftclick to teleport"),
-    GUI_HOME_RIGHTCLICK_DELETE("§eRightclick to delete"),
+    GUI_HOME_SHIFTLEFTCLICK_EDIT_ICON("§eShift-Leftclick to edit the icon"),
+    GUI_HOME_RIGHTCLICK_DELETE("§cRightclick to delete"),
     GUI_HOME_PAGE_PREVIOUS("§cBack"),
     GUI_HOME_PAGE_NEXT("§aNext")
     ;

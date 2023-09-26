@@ -14,6 +14,7 @@ public abstract class Database {
 
     @Getter
     protected String databaseName;
+    @Getter
     protected Connection connection;
     protected Logger logger;
 
