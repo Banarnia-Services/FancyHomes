@@ -4,6 +4,6 @@ main: de.banarnia.fancyhomes.FancyHomes
 prefix: FancyHomes
 author: Banarnia
 description: Home-Plugin with usability in mind.
-api-version: 1.13
+api-version: 1.8
 softdepend:
   - LuckPerms
