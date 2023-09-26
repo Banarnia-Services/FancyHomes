@@ -36,6 +36,8 @@ public class HomeGUI {
     }
 
     private void init() {
+        gui.clearPageItems();
+
         gui.getFiller().fillBottom(ItemBuilder.from(Material.GRAY_STAINED_GLASS_PANE).setName(" ").asGuiItem());
         gui.setItem(gui.getRows()-1, 4, getInfoItem());
 

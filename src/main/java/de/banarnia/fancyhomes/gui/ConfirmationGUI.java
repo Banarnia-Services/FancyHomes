@@ -59,14 +59,14 @@ public class ConfirmationGUI {
                 .setLore(acceptItemLore)
                 .asGuiItem();
         acceptItem.setAction(click -> accept((Player) click.getWhoClicked()));
-        gui.setItem(2, acceptItem);
+        gui.setItem(1, acceptItem);
 
         GuiItem denyItem = ItemBuilder.from(Material.REDSTONE_BLOCK)
                 .setName(denyItemName)
                 .setLore(denyItemLore)
                 .asGuiItem();
         denyItem.setAction(click -> deny((Player) click.getWhoClicked()));
-        gui.setItem(6, denyItem);
+        gui.setItem(3, denyItem);
     }
 
     public void open(Player player) {
@@ -90,11 +90,13 @@ public class ConfirmationGUI {
         if (this.consumer == null)
             return;
 
+        Consumer<Boolean> consumer = this.consumer;
+        this.consumer = null;
+
         if (this.denySound != null)
             player.playSound(player, denySound, 1, 1);
 
-        this.consumer.accept(false);
-        this.consumer = null;
+        consumer.accept(false);
     }
 
 }
