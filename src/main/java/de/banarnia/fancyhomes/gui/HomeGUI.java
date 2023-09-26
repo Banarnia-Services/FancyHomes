@@ -39,7 +39,7 @@ public class HomeGUI {
         gui.clearPageItems();
 
         gui.getFiller().fillBottom(ItemBuilder.from(Material.GRAY_STAINED_GLASS_PANE).setName(" ").asGuiItem());
-        gui.setItem(gui.getRows()-1, 4, getInfoItem());
+        gui.setItem(gui.getRows(), 5, getInfoItem());
 
         List<String> homeNamesSorted = data.getHomeMap().keySet().stream().sorted().collect(Collectors.toCollection(LinkedList::new));
         for (String homeName : homeNamesSorted) {
