@@ -54,14 +54,14 @@ public class ConfirmationGUI {
     public void init() {
         gui.getFiller().fill(ItemBuilder.from(Material.GRAY_STAINED_GLASS_PANE).setName(" ").asGuiItem());
 
-        GuiItem acceptItem = ItemBuilder.from(Material.EMERALD_BLOCK)
+        GuiItem acceptItem = ItemBuilder.from(Material.GREEN_DYE)
                 .setName(acceptItemName)
                 .setLore(acceptItemLore)
                 .asGuiItem();
         acceptItem.setAction(click -> accept((Player) click.getWhoClicked()));
         gui.setItem(1, acceptItem);
 
-        GuiItem denyItem = ItemBuilder.from(Material.REDSTONE_BLOCK)
+        GuiItem denyItem = ItemBuilder.from(Material.RED_DYE)
                 .setName(denyItemName)
                 .setLore(denyItemLore)
                 .asGuiItem();
@@ -83,6 +83,7 @@ public class ConfirmationGUI {
         if (this.acceptSound != null)
             player.playSound(player, acceptSound, 1, 1);
 
+        player.closeInventory();
         consumer.accept(true);
     }
 
@@ -96,6 +97,7 @@ public class ConfirmationGUI {
         if (this.denySound != null)
             player.playSound(player, denySound, 1, 1);
 
+        player.closeInventory();
         consumer.accept(false);
     }
 
