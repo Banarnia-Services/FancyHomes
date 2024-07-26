@@ -92,7 +92,7 @@ public class MaterialSelectionGUI {
 
         ItemBuilder builder = ItemBuilder.from(material);
         if (currentSelection == material) {
-            builder.enchant(Enchantment.ARROW_DAMAGE);
+            builder.enchant(Enchantment.INFINITY);
             builder.flags(ItemFlag.HIDE_ENCHANTS);
         }
 
