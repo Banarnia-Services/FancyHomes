@@ -1,12 +1,9 @@
 package de.banarnia.fancyhomes.api;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-
-import java.util.UUID;
 
 public class UtilItem {
 
