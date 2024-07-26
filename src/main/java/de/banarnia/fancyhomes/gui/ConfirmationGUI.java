@@ -37,7 +37,7 @@ public class ConfirmationGUI {
         this.denySound = denySound;
         this.consumer = consumer;
 
-        this.gui = Gui.gui(GuiType.HOPPER).title(Legacy.SERIALIZER.deserialize(title)).create();
+        this.gui = Gui.gui(GuiType.CHEST).title(Legacy.SERIALIZER.deserialize(title)).create();
         this.gui.setDefaultClickAction(event -> event.setCancelled(true));
         this.gui.setCloseGuiAction(event -> deny((Player) event.getPlayer()));
         init();
@@ -59,14 +59,14 @@ public class ConfirmationGUI {
                 .setLore(acceptItemLore)
                 .asGuiItem();
         acceptItem.setAction(click -> accept((Player) click.getWhoClicked()));
-        gui.setItem(1, acceptItem);
+        gui.setItem(3, acceptItem);
 
         GuiItem denyItem = ItemBuilder.from(Material.REDSTONE_BLOCK)
                 .setName(denyItemName)
                 .setLore(denyItemLore)
                 .asGuiItem();
         denyItem.setAction(click -> deny((Player) click.getWhoClicked()));
-        gui.setItem(3, denyItem);
+        gui.setItem(5, denyItem);
     }
 
     public void open(Player player) {
