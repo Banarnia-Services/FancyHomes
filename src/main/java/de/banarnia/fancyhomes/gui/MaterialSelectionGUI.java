@@ -80,7 +80,9 @@ public class MaterialSelectionGUI {
 
         for (Material material : Material.values()) {
             if (material == Material.AIR) continue;
-            gui.addItem(getMaterialItem(material));
+            GuiItem guiItem = getMaterialItem(material);
+            if (guiItem != null)
+                gui.addItem(getMaterialItem(material));
         }
 
         UtilGUI.setPaginationItems(gui, Message.GUI_HOME_PAGE_PREVIOUS.get(), Message.GUI_HOME_PAGE_NEXT.get());
@@ -90,7 +92,15 @@ public class MaterialSelectionGUI {
         if (material == null)
             return null;
 
-        ItemBuilder builder = ItemBuilder.from(material);
+        ItemBuilder builder;
+
+        // Fix for 1.21 update, where Materials like WATER cannot be converted to an ItemStack.
+        try {
+            builder = ItemBuilder.from(material);
+        } catch (IllegalArgumentException ex) {
+            return null;
+        }
+
         if (currentSelection == material) {
             builder.enchant(Enchantment.INFINITY);
             builder.flags(ItemFlag.HIDE_ENCHANTS);
