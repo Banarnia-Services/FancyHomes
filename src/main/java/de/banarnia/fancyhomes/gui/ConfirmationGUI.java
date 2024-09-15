@@ -44,11 +44,11 @@ public class ConfirmationGUI {
     }
 
     public ConfirmationGUI(String title, Consumer<Boolean> consumer) {
-        this(title, null, null, null, null, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, Sound.BLOCK_NOTE_BLOCK_BANJO, consumer);
+        this(title, null, null, null, null, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, Sound.BLOCK_NOTE_BLOCK_GUITAR, consumer);
     }
 
     public ConfirmationGUI(String title, String acceptItemName, String denyItemName, Consumer<Boolean> consumer) {
-        this(title, acceptItemName, null, denyItemName, null, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, Sound.BLOCK_NOTE_BLOCK_BANJO, consumer);
+        this(title, acceptItemName, null, denyItemName, null, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, Sound.BLOCK_NOTE_BLOCK_GUITAR, consumer);
     }
 
     public void init() {
@@ -81,7 +81,7 @@ public class ConfirmationGUI {
         this.consumer = null;
 
         if (this.acceptSound != null)
-            player.playSound(player, acceptSound, 1, 1);
+            player.playSound(player.getLocation(), acceptSound, 1, 1);
 
         consumer.accept(true);
     }
@@ -94,7 +94,7 @@ public class ConfirmationGUI {
         this.consumer = null;
 
         if (this.denySound != null)
-            player.playSound(player, denySound, 1, 1);
+            player.playSound(player.getLocation(), denySound, 1, 1);
 
         consumer.accept(false);
     }

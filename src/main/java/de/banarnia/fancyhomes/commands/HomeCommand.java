@@ -39,10 +39,10 @@ public class HomeCommand extends BaseCommand {
         api.getHomeMap(sender.getUniqueId()).thenAccept(map -> {
             Home targetHome = map.get("Default");
             if (targetHome == null && map.size() == 1)
-                targetHome = map.values().stream().toList().get(0);
+                targetHome = map.values().stream().findFirst().get();
 
             if (targetHome == null) {
-                String message = map.size() == 0 ?
+                String message = map.isEmpty() ?
                         Message.COMMAND_ERROR_HOME_EMPTY.get() :
                         Message.COMMAND_ERROR_HOME_NOT_SPECIFIED.get();
                 sender.sendMessage(message);

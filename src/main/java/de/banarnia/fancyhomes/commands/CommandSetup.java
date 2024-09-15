@@ -10,6 +10,7 @@ import de.banarnia.fancyhomes.manager.ImportStats;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class CommandSetup {
 
@@ -21,7 +22,7 @@ public class CommandSetup {
             return new ArrayList<>();
         });
         manager.getCommandCompletions().registerCompletion("importSource",
-                c -> Arrays.stream(ImportSource.values()).map(ImportSource::name).toList());
+                c -> Arrays.stream(ImportSource.values()).map(ImportSource::name).collect(Collectors.toList()));
     }
 
     public static void initCommandContext(CommandManager manager) {

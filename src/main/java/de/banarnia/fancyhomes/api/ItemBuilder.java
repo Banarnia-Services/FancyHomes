@@ -8,7 +8,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -486,7 +485,7 @@ public final class ItemBuilder {
      * @param player Player whose head you want.
      * @return Instance for chaining.
      */
-    public ItemBuilder setSkullOwner(@Nullable OfflinePlayer player) {
+    public ItemBuilder setSkullOwner(OfflinePlayer player) {
         // Check if item is a skull.
         if (item.getType() != Material.PLAYER_HEAD) {
             Bukkit.getLogger().warning("You can only change the Skull-Owner of skulls.");

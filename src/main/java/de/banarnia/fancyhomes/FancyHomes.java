@@ -2,7 +2,6 @@ package de.banarnia.fancyhomes;
 
 import co.aikar.commands.BukkitCommandManager;
 import co.aikar.commands.CommandManager;
-import de.banarnia.fancyhomes.api.UtilFile;
 import de.banarnia.fancyhomes.api.config.Config;
 import de.banarnia.fancyhomes.api.config.YamlConfig;
 import de.banarnia.fancyhomes.api.config.YamlVersionConfig;
@@ -21,7 +20,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.io.IOException;
 
 public class FancyHomes extends JavaPlugin {
 

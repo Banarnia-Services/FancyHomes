@@ -55,7 +55,7 @@ public class MaterialSelectionGUI {
     public MaterialSelectionGUI(String title, Material originSelection, String acceptItemName, String cancelItemName, Consumer<Material> consumer) {
         this(title, originSelection,
                 acceptItemName, null, cancelItemName, null,
-                Sound.ENTITY_EXPERIENCE_ORB_PICKUP, Sound.BLOCK_NOTE_BLOCK_BANJO,
+                Sound.ENTITY_EXPERIENCE_ORB_PICKUP, Sound.BLOCK_NOTE_BLOCK_GUITAR,
                 consumer);
     }
 
@@ -102,7 +102,7 @@ public class MaterialSelectionGUI {
         }
 
         if (currentSelection == material) {
-            builder.enchant(Enchantment.INFINITY);
+            builder.enchant(Enchantment.FIRE_ASPECT);
             builder.flags(ItemFlag.HIDE_ENCHANTS);
         }
 
@@ -125,7 +125,7 @@ public class MaterialSelectionGUI {
         this.consumer = null;
 
         if (this.acceptSound != null)
-            player.playSound(player, acceptSound, 1, 1);
+            player.playSound(player.getLocation(), acceptSound, 1, 1);
 
         consumer.accept(currentSelection);
     }
@@ -138,7 +138,7 @@ public class MaterialSelectionGUI {
         this.consumer = null;
 
         if (this.cancelSound != null)
-            player.playSound(player, cancelSound, 1, 1);
+            player.playSound(player.getLocation(), cancelSound, 1, 1);
 
         consumer.accept(originSelection);
     }

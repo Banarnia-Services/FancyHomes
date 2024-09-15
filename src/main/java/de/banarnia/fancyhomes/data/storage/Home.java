@@ -137,9 +137,6 @@ public class Home implements ConfigurationSerializable {
         Material material = icon != null ? Material.getMaterial(icon) : null;
         if (material == null) {
             switch (getWorldEnvironment()) {
-                case CUSTOM:
-                    material = Material.QUARTZ_BLOCK;
-                    break;
                 case NETHER:
                     material = Material.NETHERRACK;
                     break;
