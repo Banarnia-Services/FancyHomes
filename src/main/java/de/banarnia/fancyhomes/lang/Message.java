@@ -25,6 +25,7 @@ public enum Message implements ILanguage {
     COMMAND_ERROR_HOME_IMPORT_INVALID_IMPORTSOURCE("§cThis source is not implemented."),
 
     // COMMAND /sethome
+    COMMAND_ERROR_SETHOME_UNDERSCORE("%prefix% §cThe home name may not contain underscores."),
     COMMAND_ERROR_SETHOME_LIMIT_REACHED("%prefix% §cYou don't have any homes left."),
     COMMAND_ERROR_SETHOME_LIMIT_EXCEEDED("%prefix% §cYou can't edit any homes because you exceeded the home limit."),
     COMMAND_INFO_SETHOME_RELOCATED("%prefix% You relocated the home §e%home% §7to your current location."),

@@ -49,7 +49,7 @@ public class HomeFileStorage extends HomeStorage {
     @Override
     protected CompletableFuture<Boolean> saveHomeInStorage(Home home) {
         return CompletableFuture.supplyAsync(() -> {
-            config.set("homes." + home.getName(), home);
+            config.set("homes." + convertKey(home.getName()), home);
             config.save();
 
             return true;
@@ -59,10 +59,11 @@ public class HomeFileStorage extends HomeStorage {
     @Override
     protected CompletableFuture<Boolean> deleteHomeFromStorage(String homeName) {
         return CompletableFuture.supplyAsync(() -> {
-            if (!config.isSet("homes." + homeName))
+            String homeKey = convertKey(homeName);
+            if (!config.isSet("homes." + homeKey))
                 return false;
 
-            config.set("homes." + homeName, null);
+            config.set("homes." + homeKey, null);
             config.save();
             return true;
         });
@@ -72,19 +73,24 @@ public class HomeFileStorage extends HomeStorage {
     protected CompletableFuture<Boolean> updateHomeLocationInStorage(String homeName, Location location, long timestamp) {
         Home home = getHome(homeName);
         home.updateLocation(location, System.currentTimeMillis());
-        return CompletableFuture.supplyAsync(() -> {
-            config.set("homes." + homeName, home);
-            return config.save();
-        });
+
+        return saveHomeInStorage(home);
     }
 
     @Override
     protected CompletableFuture<Boolean> updateHomeIconInStorage(String homeName, String newIcon) {
         Home home = getHome(homeName);
         home.setIcon(newIcon);
-        return CompletableFuture.supplyAsync(() -> {
-            config.set("homes." + homeName, home);
-            return config.save();
-        });
+
+        return saveHomeInStorage(home);
+    }
+
+    /**
+     * Remove all dots in home name to enable a correct save in the yaml file.
+     * @param key Key to convert.
+     * @return Key without dots.
+     */
+    private String convertKey(String key) {
+        return key.replace('.', '_');
     }
 }

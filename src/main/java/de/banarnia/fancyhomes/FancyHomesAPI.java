@@ -38,7 +38,7 @@ public interface FancyHomesAPI {
     default CompletableFuture<Boolean> addHome(Player issuer, UUID playerId, String name, Location location) {
         if (name == null)
             name = "Default";
-        if (playerId == null || name == null || location == null)
+        if (playerId == null || location == null)
             throw new IllegalArgumentException("You need to specify a player id, home name and location.");
 
         name = name.replace(" ", "_");
@@ -52,11 +52,19 @@ public interface FancyHomesAPI {
                             boolean limitReached = homeAmount >= homeLimit && homeLimit >= 0;
                             boolean limitExceeded = homeAmount > homeLimit && homeLimit >= 0;
 
+                            // Check if home name contains underscores.
+                            if (finalName.contains("_")) {
+                                issuer.sendMessage(Message.COMMAND_ERROR_SETHOME_UNDERSCORE.get());
+                                return false;
+                            }
+
+                            // Check if player already has more homes than allowed.
                             if (limitExceeded) {
                                 issuer.sendMessage(Message.COMMAND_ERROR_SETHOME_LIMIT_EXCEEDED.get());
                                 return false;
                             }
 
+                            // Check if player has the exact amount of homes he is allowed to.
                             if (limitReached && !data.hasHome(finalName)) {
                                 issuer.sendMessage(Message.COMMAND_ERROR_SETHOME_LIMIT_REACHED.get());
                                 return false;

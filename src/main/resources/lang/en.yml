@@ -22,7 +22,8 @@ Message:
   command-error-home-location-not-loaded: "%prefix% §cYou can't teleport to this
     home because the world is not loaded."
   command-info-home-import-started: "%prefix% §7Starting import from §e%source%§7."
-  command-error-home-import-invalid-importsource: §cThis source is not implemented.
+  command-error-home-import-invalid-importsource: "§cThis source is not implemented."
+  command-error-sethome-underscore: "%prefix% §cThe home name may not contain underscores."
   command-error-sethome-limit-reached: "%prefix% §cYou don't have any homes left."
   command-error-sethome-limit-exceeded:
     "%prefix% §cYou can't edit any homes because

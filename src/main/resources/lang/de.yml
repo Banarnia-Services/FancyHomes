@@ -18,6 +18,7 @@ Message:
   command-error-sethome-limit-reached: '%prefix% §cDu hast keine Homes über.'
   command-error-sethome-limit-exceeded: '%prefix% §cDu kannst keine Homes bearbeiten, solange du das Home-Limit überschritten hast.'
   command-info-sethome-relocated: '%prefix% Du hast dein Home §e%home% §7zu deiner aktuellen Position verschoben.'
+  command-error-sethome-underscore: '%prefix% §cDer Name darf keinen Unterstrich enthalten.'
   command-error-sethome-relocation-failed: '%prefix% §cHome konnte nicht geändert werden.'
   command-error-sethome-canceled: '%prefix% §cDu kannst das Home §e%home%
     §cgerade nicht erstellen.'
