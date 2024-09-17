@@ -23,9 +23,6 @@ public class UtilFile {
      * @throws IOException
      */
     public static void copyInputStreamToFile(InputStream in, File file) throws IOException {
-        if (file.exists())
-            return;
-
         Files.copy(in, file.toPath(), StandardCopyOption.COPY_ATTRIBUTES);
     }
 
