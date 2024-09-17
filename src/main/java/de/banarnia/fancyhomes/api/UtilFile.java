@@ -1,11 +1,13 @@
 package de.banarnia.fancyhomes.api;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import sun.misc.IOUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 
 /**
  * Util class for file operations.
@@ -20,7 +22,7 @@ public class UtilFile {
      */
     public static void copyInputStreamToFile(InputStream in, File file) throws IOException {
         try (FileOutputStream out = new FileOutputStream(file, false)) {
-            in.transferTo(out);
+            Files.copy(in, file.toPath());
         }
     }
 
