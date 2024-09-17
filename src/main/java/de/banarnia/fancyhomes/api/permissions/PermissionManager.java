@@ -19,8 +19,6 @@ import net.luckperms.api.query.QueryOptions;
 import net.luckperms.api.track.Track;
 import net.luckperms.api.track.TrackManager;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -29,7 +27,7 @@ import java.util.function.Function;
 
 public class PermissionManager {
 
-    private static LuckPerms api = LuckPermsProvider.get();
+    private static final LuckPerms api = LuckPermsProvider.get();
 
     // Managers.
 

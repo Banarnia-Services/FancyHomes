@@ -14,16 +14,16 @@ import java.util.function.Consumer;
 
 public class ConfirmationGUI {
 
-    private String title;
-    private String acceptItemName;
-    private List<String> acceptItemLore;
-    private String denyItemName;
-    private List<String> denyItemLore;
-    private Sound acceptSound;
-    private Sound denySound;
+    private final String title;
+    private final String acceptItemName;
+    private final List<String> acceptItemLore;
+    private final String denyItemName;
+    private final List<String> denyItemLore;
+    private final Sound acceptSound;
+    private final Sound denySound;
     private Consumer<Boolean> consumer;
 
-    private Gui gui;
+    private final Gui gui;
 
     public ConfirmationGUI(String title, String acceptItemName, List<String> acceptItemLore,
                            String denyItemName, List<String> denyItemLore,

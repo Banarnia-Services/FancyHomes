@@ -11,8 +11,8 @@ public class ImportStats {
     @Getter
     private int overallSuccessfulImports, overallFailedImports;
 
-    private HashMap<UUID, Integer> successfulImports = new HashMap<>();
-    private HashMap<UUID, Integer> failedImports = new HashMap<>();
+    private final HashMap<UUID, Integer> successfulImports = new HashMap<>();
+    private final HashMap<UUID, Integer> failedImports = new HashMap<>();
 
     @Getter
     @Setter

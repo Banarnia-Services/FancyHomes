@@ -7,14 +7,13 @@ import de.banarnia.fancyhomes.FancyHomesAPI;
 import de.banarnia.fancyhomes.api.UtilThread;
 import de.banarnia.fancyhomes.data.HomeData;
 import de.banarnia.fancyhomes.gui.HomeGUI;
-import de.banarnia.fancyhomes.lang.Message;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 @CommandAlias("homes")
 public class HomesCommand extends BaseCommand {
 
-    private FancyHomesAPI api = FancyHomesAPI.get();
+    private final FancyHomesAPI api = FancyHomesAPI.get();
 
     @Default
     public void openGui(Player sender) {

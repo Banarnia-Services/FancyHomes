@@ -24,9 +24,9 @@ import java.util.stream.Collectors;
 
 public class HomeGUI {
 
-    private HomeData data;
-    private OfflinePlayer target;
-    private PaginatedGui gui;
+    private final HomeData data;
+    private final OfflinePlayer target;
+    private final PaginatedGui gui;
 
     public HomeGUI(String title, HomeData data) {
         this.data = data;

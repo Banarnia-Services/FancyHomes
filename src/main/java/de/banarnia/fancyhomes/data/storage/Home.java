@@ -22,7 +22,7 @@ import java.util.Map;
 public class Home implements ConfigurationSerializable {
 
     @Getter
-    private String name;
+    private final String name;
     @Getter
     private long created;
     @Getter

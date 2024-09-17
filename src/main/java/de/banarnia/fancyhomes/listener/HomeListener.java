@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class HomeListener implements Listener {
 
-    private HomeManager manager;
+    private final HomeManager manager;
 
     public HomeListener(HomeManager manager) {
         this.manager = manager;

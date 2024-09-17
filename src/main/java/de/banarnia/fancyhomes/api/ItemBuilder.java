@@ -418,8 +418,6 @@ public final class ItemBuilder {
             return this;
 
         // Check length.
-        if (flags.length == 0)
-            return this;
 
         // Add flags.
         for (ItemFlag flag : flags) {
@@ -453,8 +451,6 @@ public final class ItemBuilder {
         }
 
         // Check length.
-        if (flags.length == 0)
-            return this;
 
         // Remove flags.
         for (ItemFlag flag : flags) {

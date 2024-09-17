@@ -12,15 +12,15 @@ import java.util.UUID;
 public class SethomeEvent extends BanarniaEvent implements Cancellable {
 
     @Getter
-    private Player player;
+    private final Player player;
     @Getter
-    private UUID homeOwner;
+    private final UUID homeOwner;
     @Getter
-    private HomeData homeData;
+    private final HomeData homeData;
     @Getter
-    private String homeName;
+    private final String homeName;
     @Getter
-    private Location location;
+    private final Location location;
 
     private boolean cancelled;
 

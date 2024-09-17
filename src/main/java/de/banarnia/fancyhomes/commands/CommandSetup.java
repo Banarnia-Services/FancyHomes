@@ -6,7 +6,6 @@ import de.banarnia.fancyhomes.FancyHomesAPI;
 import de.banarnia.fancyhomes.data.storage.Home;
 import de.banarnia.fancyhomes.lang.Message;
 import de.banarnia.fancyhomes.manager.ImportSource;
-import de.banarnia.fancyhomes.manager.ImportStats;
 
 import java.util.ArrayList;
 import java.util.Arrays;

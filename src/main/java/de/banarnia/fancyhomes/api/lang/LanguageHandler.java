@@ -14,10 +14,10 @@ import java.util.List;
  */
 public class LanguageHandler {
 
-    private JavaPlugin plugin;
-    private Config config;
+    private final JavaPlugin plugin;
+    private final Config config;
 
-    private List<Class<? extends ILanguage>> registeredEnums = new ArrayList<>();
+    private final List<Class<? extends ILanguage>> registeredEnums = new ArrayList<>();
 
     /**
      * Default constructor.
@@ -36,7 +36,7 @@ public class LanguageHandler {
      * @return True if it is registered, else false.
      */
     public boolean isRegistered(Class<? extends ILanguage> enumClass) {
-        return registeredEnums != null ? registeredEnums.contains(enumClass) : false;
+        return registeredEnums != null && registeredEnums.contains(enumClass);
     }
 
     /**

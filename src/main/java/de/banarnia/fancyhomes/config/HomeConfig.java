@@ -8,9 +8,9 @@ import de.banarnia.fancyhomes.data.storage.StorageMethod;
 
 public class HomeConfig {
 
-    private FancyHomes plugin;
+    private final FancyHomes plugin;
 
-    private Config config;
+    private final Config config;
 
     private Database database;
 

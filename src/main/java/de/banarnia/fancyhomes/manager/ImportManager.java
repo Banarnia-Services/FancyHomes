@@ -7,19 +7,17 @@ import de.banarnia.fancyhomes.api.config.YamlConfig;
 import de.banarnia.fancyhomes.data.HomeData;
 import de.banarnia.fancyhomes.data.storage.Home;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 
 public class ImportManager {
 
-    private FancyHomes plugin;
-    private HomeManager manager;
+    private final FancyHomes plugin;
+    private final HomeManager manager;
 
     public ImportManager(FancyHomes plugin, HomeManager manager) {
         this.plugin = plugin;

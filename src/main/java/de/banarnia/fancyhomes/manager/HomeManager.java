@@ -6,8 +6,8 @@ import de.banarnia.fancyhomes.api.permissions.PermissionManager;
 import de.banarnia.fancyhomes.api.sql.Database;
 import de.banarnia.fancyhomes.api.sql.MySQL;
 import de.banarnia.fancyhomes.config.HomeConfig;
-import de.banarnia.fancyhomes.data.storage.*;
 import de.banarnia.fancyhomes.data.HomeData;
+import de.banarnia.fancyhomes.data.storage.*;
 import de.banarnia.fancyhomes.events.HomeEvent;
 import de.banarnia.fancyhomes.lang.Message;
 import org.bukkit.Bukkit;
@@ -19,12 +19,12 @@ import java.util.concurrent.CompletableFuture;
 
 public class HomeManager implements FancyHomesAPI {
 
-    private FancyHomes plugin;
-    private HomeConfig config;
+    private final FancyHomes plugin;
+    private final HomeConfig config;
 
-    private HashMap<UUID, HomeData> cachedHomeData = new HashMap<>();
-    private HashMap<UUID, Long> cooldowns = new HashMap<>();
-    private HashMap<UUID, Integer> warmups = new HashMap<>();
+    private final HashMap<UUID, HomeData> cachedHomeData = new HashMap<>();
+    private final HashMap<UUID, Long> cooldowns = new HashMap<>();
+    private final HashMap<UUID, Integer> warmups = new HashMap<>();
 
     public HomeManager(FancyHomes plugin, HomeConfig config) {
         this.plugin = plugin;

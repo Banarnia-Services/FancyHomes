@@ -1,8 +1,8 @@
 package de.banarnia.fancyhomes.events;
 
 import de.banarnia.fancyhomes.api.events.BanarniaEvent;
-import de.banarnia.fancyhomes.data.storage.Home;
 import de.banarnia.fancyhomes.data.HomeData;
+import de.banarnia.fancyhomes.data.storage.Home;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -12,13 +12,13 @@ import java.util.UUID;
 public class DelhomeEvent extends BanarniaEvent implements Cancellable {
 
     @Getter
-    private Player player;
+    private final Player player;
     @Getter
-    private UUID homeOwner;
+    private final UUID homeOwner;
     @Getter
-    private HomeData homeData;
+    private final HomeData homeData;
     @Getter
-    private Home home;
+    private final Home home;
 
     private boolean cancelled;
 

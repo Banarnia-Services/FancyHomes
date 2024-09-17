@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class HomeMySQLStorage extends HomeStorage {
 
-    private MySQL database;
+    private final MySQL database;
 
     public HomeMySQLStorage(FancyHomes plugin, UUID playerId, MySQL database) {
         super(plugin, playerId);

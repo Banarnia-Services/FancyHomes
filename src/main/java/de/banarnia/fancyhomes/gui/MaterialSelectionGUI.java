@@ -18,18 +18,18 @@ import java.util.function.Consumer;
 
 public class MaterialSelectionGUI {
 
-    private String title;
-    private Material originSelection;
+    private final String title;
+    private final Material originSelection;
     private Material currentSelection;
-    private String acceptItemName;
-    private List<String> acceptItemLore;
-    private String cancelItemName;
-    private List<String> cancelItemLore;
-    private Sound acceptSound;
-    private Sound cancelSound;
+    private final String acceptItemName;
+    private final List<String> acceptItemLore;
+    private final String cancelItemName;
+    private final List<String> cancelItemLore;
+    private final Sound acceptSound;
+    private final Sound cancelSound;
     private Consumer<Material> consumer;
 
-    private PaginatedGui gui;
+    private final PaginatedGui gui;
 
     public MaterialSelectionGUI(String title, Material originSelection,
                                 String acceptItemName, List<String> acceptItemLore,

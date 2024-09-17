@@ -19,9 +19,9 @@ import java.util.concurrent.CompletableFuture;
 @CommandAlias("home")
 public class HomeCommand extends BaseCommand {
 
-    private FancyHomesAPI api = FancyHomesAPI.get();
-    private HomeConfig config;
-    private ImportManager importManager;
+    private final FancyHomesAPI api = FancyHomesAPI.get();
+    private final HomeConfig config;
+    private final ImportManager importManager;
 
     public HomeCommand(HomeConfig config, ImportManager importManager) {
         this.config = config;

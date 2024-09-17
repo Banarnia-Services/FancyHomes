@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 @CommandAlias("delhome")
 public class DelhomeCommand extends BaseCommand {
 
-    private FancyHomesAPI api = FancyHomesAPI.get();
+    private final FancyHomesAPI api = FancyHomesAPI.get();
 
     @Default
     @CommandCompletion("@homes")

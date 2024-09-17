@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class SQLite extends Database {
 
-    private File databaseFile;
+    private final File databaseFile;
 
     public SQLite(Logger logger, File databaseFile) {
         super(databaseFile.getAbsolutePath(), logger);
