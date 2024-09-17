@@ -20,9 +20,10 @@ public class UtilFile {
      * @throws IOException
      */
     public static void copyInputStreamToFile(InputStream in, File file) throws IOException {
-        try (FileOutputStream out = new FileOutputStream(file, false)) {
-            Files.copy(in, file.toPath());
-        }
+        if (file.exists())
+            return;
+
+        Files.copy(in, file.toPath());
     }
 
     /**
