@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class LanguageHandler {
 
-    private final JavaPlugin plugin;
     private final Config config;
 
     private final List<Class<? extends ILanguage>> registeredEnums = new ArrayList<>();
@@ -26,7 +25,6 @@ public class LanguageHandler {
      */
     public LanguageHandler(JavaPlugin plugin, String lang) {
         lang = lang.replace(".yml", "").replace(".yaml", "");
-        this.plugin = plugin;
         this.config = YamlConfig.of(plugin.getDataFolder().getPath() + File.separator + "lang", lang + ".yml");
     }
 
