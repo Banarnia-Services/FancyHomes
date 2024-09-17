@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Set;
 import java.util.logging.Level;
 
@@ -181,7 +182,7 @@ public class YamlConfig extends YamlConfiguration implements Config {
     public Set<String> getKeys(String path, boolean deep) {
         ConfigurationSection section = getConfigurationSection(path);
         if (section == null)
-            return Set.of();
+            return Collections.emptySet();
 
         return section.getKeys(deep);
     }
