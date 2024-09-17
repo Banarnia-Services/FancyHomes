@@ -26,7 +26,7 @@ public class UtilFile {
         if (file.exists())
             return;
 
-        Files.copy(in, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(in, file.toPath(), StandardCopyOption.COPY_ATTRIBUTES);
     }
 
     /**
