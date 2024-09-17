@@ -116,7 +116,7 @@ public class YamlConfig extends YamlConfiguration implements Config {
      * @return True if it was loaded successfully, else false.
      */
     public boolean loadConfig() {
-        // Create file if it does not exist.
+        // Create file, if it does not exist.
         if (!this.file.exists() || this.file.isDirectory()) {
             // Create parent folders.
             this.file.getParentFile().mkdirs();
