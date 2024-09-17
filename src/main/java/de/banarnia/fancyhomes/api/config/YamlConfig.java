@@ -63,6 +63,9 @@ public class YamlConfig extends YamlConfiguration implements Config {
 
         // Copy resource if file does not exist.
         if (!file.exists()) {
+            // Load config to create file.
+            config.loadConfig();
+
             // Try to copy default resource.
             try {
                 UtilFile.copyResource(plugin, resourcePath, file);

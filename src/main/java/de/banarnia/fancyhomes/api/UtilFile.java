@@ -1,12 +1,15 @@
 package de.banarnia.fancyhomes.api;
 
+import org.bukkit.configuration.ConfigurationOptions;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.CopyOption;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 /**
  * Util class for file operations.
@@ -23,7 +26,7 @@ public class UtilFile {
         if (file.exists())
             return;
 
-        Files.copy(in, file.toPath());
+        Files.copy(in, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
     }
 
     /**
