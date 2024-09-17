@@ -121,9 +121,10 @@
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <filters>
                                 <filter>
-                                    <artifact>de.banarnia:*</artifact>
+                                    <artifact>*</artifact>
                                     <excludes>
                                         <exclude>META-INF/*.MF</exclude>
+                                        <exclude>META-INF.*.module-info</exclude>
                                     </excludes>
                                 </filter>
                             </filters>
