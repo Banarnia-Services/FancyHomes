@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'com.gradleup.shadow' version '8.3.2'
+}
+
+group = 'de.banarnia'
+version = '2.0.0-SNAPSHOT'
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+    maven { url = "https://hub.spigotmc.org/nexus/content/groups/public/" }
+}
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:1.18.30"
+    compileOnly "org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT"
+    implementation "org.bstats:bstats-bukkit:3.0.2"
+}
+
+shadowJar {
+    relocate 'org.bstats', 'de.banarnia.api'
+}
+
+build.dependsOn shadowJar
