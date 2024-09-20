@@ -16,10 +16,12 @@ repositories {
 dependencies {
     compileOnly "org.projectlombok:lombok:1.18.30"
     compileOnly "org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT"
+    implementation "de.banarnia:BanarniaAPI:1.0-SNAPSHOT"
     implementation "org.bstats:bstats-bukkit:3.0.2"
 }
 
 shadowJar {
+    relocate 'de.banarnia.api', 'de.banarnia.fancyhomes.api'
     relocate 'org.bstats', 'de.banarnia.api'
 }
 
