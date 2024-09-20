@@ -1,7 +1,7 @@
 package de.banarnia.fancyhomes.data.storage;
 
 import de.banarnia.fancyhomes.FancyHomes;
-import de.banarnia.fancyhomes.api.sql.MySQL;
+import de.banarnia.api.sql.MySQL;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 

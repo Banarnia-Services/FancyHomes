@@ -6,23 +6,36 @@ plugins {
 group = 'de.banarnia'
 version = '2.0.0-SNAPSHOT'
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+java {
+    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+}
 
 repositories {
     mavenCentral()
     maven { url = "https://hub.spigotmc.org/nexus/content/groups/public/" }
+    maven { url = 'https://jitpack.io/' }
+    maven { url = "https://repo.aikar.co/content/groups/aikar/" }
 }
 
 dependencies {
-    compileOnly "org.projectlombok:lombok:1.18.30"
+    compileOnly "org.projectlombok:lombok:1.18.34"
     compileOnly "org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT"
-    implementation "de.banarnia:BanarniaAPI:1.0-SNAPSHOT"
+    compileOnly "net.luckperms:api:5.4"
+    implementation 'com.github.Banarnia-Services:BanarniaAPI:1.1'
     implementation "org.bstats:bstats-bukkit:3.0.2"
+
 }
 
 shadowJar {
+    archiveClassifier = null
     relocate 'de.banarnia.api', 'de.banarnia.fancyhomes.api'
     relocate 'org.bstats', 'de.banarnia.api'
 }
 
-build.dependsOn shadowJar
+jar {
+    archiveClassifier = "original"
+}
+
+artifacts {
+    archives shadowJar
+}

@@ -2,8 +2,8 @@ package de.banarnia.fancyhomes.manager;
 
 import de.banarnia.fancyhomes.FancyHomes;
 import de.banarnia.fancyhomes.FancyHomesAPI;
-import de.banarnia.fancyhomes.api.config.Config;
-import de.banarnia.fancyhomes.api.config.YamlConfig;
+import de.banarnia.api.config.Config;
+import de.banarnia.api.config.YamlConfig;
 import de.banarnia.fancyhomes.data.HomeData;
 import de.banarnia.fancyhomes.data.storage.Home;
 import org.bukkit.Bukkit;

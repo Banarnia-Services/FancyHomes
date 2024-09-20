@@ -1,9 +1,9 @@
 package de.banarnia.fancyhomes.config;
 
 import de.banarnia.fancyhomes.FancyHomes;
-import de.banarnia.fancyhomes.api.config.Config;
-import de.banarnia.fancyhomes.api.sql.Database;
-import de.banarnia.fancyhomes.api.sql.MySQL;
+import de.banarnia.api.config.Config;
+import de.banarnia.api.sql.Database;
+import de.banarnia.api.sql.MySQL;
 import de.banarnia.fancyhomes.data.storage.StorageMethod;
 
 public class HomeConfig {

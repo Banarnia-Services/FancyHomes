@@ -1,10 +1,10 @@
 package de.banarnia.fancyhomes.commands;
 
-import co.aikar.commands.BaseCommand;
-import co.aikar.commands.annotation.*;
+import de.banarnia.api.acf.BaseCommand;
+import de.banarnia.api.acf.annotation.*;
 import de.banarnia.fancyhomes.FancyHomes;
 import de.banarnia.fancyhomes.FancyHomesAPI;
-import de.banarnia.fancyhomes.api.UtilThread;
+import de.banarnia.api.UtilThread;
 import de.banarnia.fancyhomes.data.HomeData;
 import de.banarnia.fancyhomes.gui.HomeGUI;
 import org.bukkit.OfflinePlayer;

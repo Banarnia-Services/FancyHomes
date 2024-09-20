@@ -1,11 +1,10 @@
 package de.banarnia.fancyhomes;
 
-import co.aikar.commands.BukkitCommandManager;
-import co.aikar.commands.CommandManager;
-import de.banarnia.fancyhomes.api.config.Config;
-import de.banarnia.fancyhomes.api.config.YamlConfig;
-import de.banarnia.fancyhomes.api.config.YamlVersionConfig;
-import de.banarnia.fancyhomes.api.lang.LanguageHandler;
+import de.banarnia.api.acf.CommandManager;
+import de.banarnia.api.config.Config;
+import de.banarnia.api.config.YamlConfig;
+import de.banarnia.api.config.YamlVersionConfig;
+import de.banarnia.api.lang.LanguageHandler;
 import de.banarnia.fancyhomes.commands.*;
 import de.banarnia.fancyhomes.config.HomeConfig;
 import de.banarnia.fancyhomes.data.storage.Home;

@@ -1,6 +1,6 @@
 package de.banarnia.fancyhomes.lang;
 
-import de.banarnia.fancyhomes.api.lang.ILanguage;
+import de.banarnia.api.lang.ILanguage;
 
 public enum Message implements ILanguage {
     PREFIX("§8[§6FancyHomes§8]§7"),

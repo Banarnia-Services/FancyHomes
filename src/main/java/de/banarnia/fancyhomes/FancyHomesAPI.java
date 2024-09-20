@@ -1,6 +1,6 @@
 package de.banarnia.fancyhomes;
 
-import de.banarnia.fancyhomes.api.UtilThread;
+import de.banarnia.api.UtilThread;
 import de.banarnia.fancyhomes.data.HomeData;
 import de.banarnia.fancyhomes.data.storage.Home;
 import de.banarnia.fancyhomes.events.DelhomeEvent;

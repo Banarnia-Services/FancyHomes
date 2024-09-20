@@ -1,7 +1,7 @@
 package de.banarnia.fancyhomes.commands;
 
-import co.aikar.commands.BaseCommand;
-import co.aikar.commands.annotation.*;
+import de.banarnia.api.acf.BaseCommand;
+import de.banarnia.api.acf.annotation.*;
 import de.banarnia.fancyhomes.FancyHomesAPI;
 import de.banarnia.fancyhomes.data.storage.Home;
 import org.bukkit.OfflinePlayer;

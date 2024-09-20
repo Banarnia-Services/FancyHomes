@@ -1,12 +1,12 @@
 package de.banarnia.fancyhomes.gui;
 
-import de.banarnia.fancyhomes.api.UtilGUI;
+import de.banarnia.api.UtilGUI;
+import de.banarnia.api.triumphgui.builder.item.ItemBuilder;
+import de.banarnia.api.triumphgui.components.util.Legacy;
+import de.banarnia.api.triumphgui.guis.Gui;
+import de.banarnia.api.triumphgui.guis.GuiItem;
+import de.banarnia.api.triumphgui.guis.PaginatedGui;
 import de.banarnia.fancyhomes.lang.Message;
-import dev.triumphteam.gui.builder.item.ItemBuilder;
-import dev.triumphteam.gui.components.util.Legacy;
-import dev.triumphteam.gui.guis.Gui;
-import dev.triumphteam.gui.guis.GuiItem;
-import dev.triumphteam.gui.guis.PaginatedGui;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;

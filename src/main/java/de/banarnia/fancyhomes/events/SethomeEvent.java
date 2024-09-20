@@ -1,6 +1,6 @@
 package de.banarnia.fancyhomes.events;
 
-import de.banarnia.fancyhomes.api.events.BanarniaEvent;
+import de.banarnia.api.events.BanarniaEvent;
 import de.banarnia.fancyhomes.data.HomeData;
 import lombok.Getter;
 import org.bukkit.Location;

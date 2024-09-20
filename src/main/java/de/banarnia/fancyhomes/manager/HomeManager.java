@@ -2,9 +2,9 @@ package de.banarnia.fancyhomes.manager;
 
 import de.banarnia.fancyhomes.FancyHomes;
 import de.banarnia.fancyhomes.FancyHomesAPI;
-import de.banarnia.fancyhomes.api.permissions.PermissionManager;
-import de.banarnia.fancyhomes.api.sql.Database;
-import de.banarnia.fancyhomes.api.sql.MySQL;
+import de.banarnia.api.permissions.PermissionManager;
+import de.banarnia.api.sql.Database;
+import de.banarnia.api.sql.MySQL;
 import de.banarnia.fancyhomes.config.HomeConfig;
 import de.banarnia.fancyhomes.data.HomeData;
 import de.banarnia.fancyhomes.data.storage.*;

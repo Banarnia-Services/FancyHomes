@@ -1,8 +1,8 @@
 package de.banarnia.fancyhomes.data.storage;
 
 import de.banarnia.fancyhomes.FancyHomes;
-import de.banarnia.fancyhomes.api.config.Config;
-import de.banarnia.fancyhomes.api.config.YamlConfig;
+import de.banarnia.api.config.Config;
+import de.banarnia.api.config.YamlConfig;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 
