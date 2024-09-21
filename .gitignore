@@ -51,3 +51,5 @@ build/
 /.gradle/8.8/fileHashes/fileHashes.bin
 /.gradle/buildOutputCleanup/outputFiles.bin
 /.gradle/8.8/fileHashes/resourceHashesCache.bin
+/.gradle/8.8/checksums/md5-checksums.bin
+/.gradle/8.8/checksums/sha1-checksums.bin
