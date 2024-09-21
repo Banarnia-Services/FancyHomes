@@ -2,7 +2,6 @@ package de.banarnia.fancyhomes.events;
 
 import de.banarnia.api.events.BanarniaEvent;
 import de.banarnia.fancyhomes.data.HomeData;
-import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -11,15 +10,10 @@ import java.util.UUID;
 
 public class SethomeEvent extends BanarniaEvent implements Cancellable {
 
-    @Getter
     private final Player player;
-    @Getter
     private final UUID homeOwner;
-    @Getter
     private final HomeData homeData;
-    @Getter
     private final String homeName;
-    @Getter
     private final Location location;
 
     private boolean cancelled;
@@ -48,5 +42,25 @@ public class SethomeEvent extends BanarniaEvent implements Cancellable {
     @Override
     public void setCancelled(boolean b) {
         this.cancelled = b;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public HomeData getHomeData() {
+        return homeData;
+    }
+
+    public UUID getHomeOwner() {
+        return homeOwner;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public String getHomeName() {
+        return homeName;
     }
 }

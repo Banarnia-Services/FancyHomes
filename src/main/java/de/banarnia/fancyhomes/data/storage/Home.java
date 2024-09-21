@@ -3,8 +3,6 @@ package de.banarnia.fancyhomes.data.storage;
 import de.banarnia.api.UtilString;
 import de.banarnia.api.triumphgui.builder.item.ItemBuilder;
 import de.banarnia.fancyhomes.lang.Message;
-import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,19 +19,12 @@ import java.util.Map;
 
 public class Home implements ConfigurationSerializable {
 
-    @Getter
     private final String name;
-    @Getter
     private long created;
-    @Getter
-    @Setter
     private String icon;
 
-    @Getter
     private String worldName;
-    @Getter
     private double x,y,z;
-    @Getter
     private float yaw, pitch;
 
     public Home(String name, long created, String icon,
@@ -194,4 +185,43 @@ public class Home implements ConfigurationSerializable {
         return new Home(name, created, icon, worldName, x, y, z, yaw, pitch);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getWorldName() {
+        return worldName;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getZ() {
+        return z;
+    }
+
+    public float getPitch() {
+        return pitch;
+    }
+
+    public float getYaw() {
+        return yaw;
+    }
+
+    public long getCreated() {
+        return created;
+    }
 }

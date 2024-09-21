@@ -1,24 +1,16 @@
 package de.banarnia.fancyhomes.manager;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.HashMap;
 import java.util.UUID;
 
 public class ImportStats {
 
-    @Getter
     private int overallSuccessfulImports, overallFailedImports;
 
     private final HashMap<UUID, Integer> successfulImports = new HashMap<>();
     private final HashMap<UUID, Integer> failedImports = new HashMap<>();
 
-    @Getter
-    @Setter
     private boolean error;
-    @Getter
-    @Setter
     private String errorMessage;
 
     public void addSuccessfulImport(UUID playerId) {
@@ -31,4 +23,27 @@ public class ImportStats {
         overallFailedImports++;
     }
 
+    public int getOverallFailedImports() {
+        return overallFailedImports;
+    }
+
+    public int getOverallSuccessfulImports() {
+        return overallSuccessfulImports;
+    }
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 }
