@@ -14,6 +14,7 @@ import de.banarnia.fancyhomes.listener.HomeListener;
 import de.banarnia.fancyhomes.manager.HomeManager;
 import de.banarnia.fancyhomes.manager.ImportManager;
 import org.bstats.bukkit.Metrics;
+import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.entity.Player;
@@ -79,6 +80,9 @@ public class FancyHomes extends JavaPlugin {
         commandManager.registerCommand(new DelhomeCommand());
 
         Bukkit.getOnlinePlayers().forEach(player -> manager.getHomeData(player.getUniqueId()));
+
+        // Add metrics.
+        metrics.addCustomChart(new SimplePie("Storage method", () -> homeConfig.getStorageMethod().toString()));
     }
 
     @Override
