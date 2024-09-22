@@ -82,7 +82,7 @@ public class FancyHomes extends JavaPlugin {
         Bukkit.getOnlinePlayers().forEach(player -> manager.getHomeData(player.getUniqueId()));
 
         // Add metrics.
-        metrics.addCustomChart(new SimplePie("Storage method", () -> homeConfig.getStorageMethod().toString()));
+        metrics.addCustomChart(new SimplePie("storage_method", () -> homeConfig.getStorageMethod().toString()));
     }
 
     @Override
