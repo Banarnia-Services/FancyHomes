@@ -1,6 +1,7 @@
 package de.banarnia.fancyhomes.listener;
 
 
+import de.banarnia.fancyhomes.events.DelhomeEvent;
 import de.banarnia.fancyhomes.manager.HomeManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -60,6 +61,12 @@ public class HomeListener implements Listener {
 
         Player player = (Player) event.getEntity();
         manager.stopWarmup(player);
+    }
+
+    @EventHandler
+    public void handleHomeDelete(DelhomeEvent event) {
+        if (event.getHome() != null && manager.isInWarmup(event.getPlayer()))
+            manager.stopWarmup(event.getPlayer());
     }
 
     @EventHandler
