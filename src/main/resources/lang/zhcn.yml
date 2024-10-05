@@ -1,0 +1,45 @@
+Message:
+  prefix: §8[§6FancyHomes§8]§7
+  command-error-console-not-supported:
+    "%prefix% §c这个命令不能在控制台执行."
+  command-info-home-config-reloaded: "%prefix% 配置已重载."
+  command-info-home-teleport: "%prefix% 正在传送至 §e%home%§7..."
+  command-info-home-warmup-started: "%prefix% 你将会在 §e%time%s§7 内传送."
+  command-error-home-canceled: "%prefix% §c你还不能这么做."
+  command-error-home-not-found: "%prefix% §c找不到名为 §e%home%§c 的家."
+  command-error-home-empty: "%prefix% §c你没有设置任何家."
+  command-error-home-others-not-found:
+    "%prefix% §c没有在玩家 §e%player%§7 的设置中找到名为 §e%home%§7 的家."
+  command-error-home-limit-exceeded: "%prefix% §c你不能再设置更多家了."
+  command-error-home-cooldown:
+    "%prefix% §c你需要再等待 §e%time%s§c 才可以这么做."
+  command-error-home-warmup-abort: "%prefix% §e待处理的传送请求已取消..."
+  command-error-home-not-specified: "%prefix% §c你需要指定家的名称."
+  command-error-home-location-not-loaded: "%prefix% §c你不能传送至这个地方, 目标世界尚未加载."
+  command-info-home-import-started: "%prefix% §7正在导入 §e%source%§7."
+  command-error-home-import-invalid-importsource: "§c导入失败, 尚未支持."
+  command-error-sethome-underscore: "%prefix% §c家名称可以包含下划线."
+  command-error-sethome-limit-reached: "%prefix% §c你不能再设置更多家了."
+  command-error-sethome-limit-exceeded:
+    "%prefix% §c你不能编辑任何家传送点, 你已达到上限."
+  command-info-sethome-relocated:
+    "%prefix% 你将家 §e%home% §7的位置重设为了当前位置."
+  command-error-sethome-relocation-failed: "%prefix% §c重设家传送点失败."
+  command-error-sethome-canceled:
+    "%prefix% §c你现在还不能创建家 §e%home%§c."
+  command-info-sethome-created: "%prefix% 成功创建家 §e%home%§7."
+  command-error-sethome-failed: "%prefix% §c创建家失败."
+  command-info-delhome-success: "%prefix% 成功删除家 §e%home%§7."
+  command-error-delhome-canceled:
+    "%prefix% §c你现在还不能删除加 §e%home% §c."
+  command-error-delhome-failed: "%prefix% §c删除家失败."
+  gui-confirmation-title: '§7确认删除?'
+  gui-home-leftclick-teleport: '§e左键点击传送'
+  gui-home-shiftleftclick-edit-icon: '§eShift+左键点击编辑图标'
+  gui-home-rightclick-delete: '§e右键点击删除'
+  gui-home-page-previous: '§c返回'
+  gui-home-page-next: '§a下一页'
+  gui-icon-selection-title: '§7选择新图标'
+  gui-icon-update-failed: "%prefix% §c更新图标失败."
+  gui-save-name: '§a保存'
+  gui-cancel-name: '§c取消'
