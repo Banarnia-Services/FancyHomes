@@ -124,34 +124,6 @@ public class Home implements ConfigurationSerializable {
         return World.Environment.NORMAL;
     }
 
-    public ItemStack buildIcon() {
-        Material material = icon != null ? Material.getMaterial(icon) : null;
-        if (material == null) {
-            switch (getWorldEnvironment()) {
-                case NETHER:
-                    material = Material.NETHERRACK;
-                    break;
-                case THE_END:
-                    material = Material.END_STONE;
-                    break;
-                default:
-                    material = Material.GRASS_BLOCK;
-            }
-        }
-
-        ItemBuilder builder = ItemBuilder.from(material);
-        builder.setName("§a" + name);
-        builder.setLore(
-                "§7" + getSqlTimestamp(),
-                "§7World: §e" + worldName,
-                " ",
-                Message.GUI_HOME_LEFTCLICK_TELEPORT.get(),
-                Message.GUI_HOME_SHIFTLEFTCLICK_EDIT_ICON.get(),
-                Message.GUI_HOME_RIGHTCLICK_DELETE.get());
-
-        return builder.build();
-    }
-
     @Override
     public Map<String, Object> serialize() {
         HashMap<String, Object> result = new LinkedHashMap<>();

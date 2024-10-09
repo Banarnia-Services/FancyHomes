@@ -45,9 +45,16 @@ public enum Message implements ILanguage {
     GUI_CANCEL_NAME("§cCancel"),
     GUI_ICON_UPDATE_FAILED("%prefix% §cFailed to update the home icon."),
     GUI_CONFIRMATION_TITLE("§7Delete home?"),
-    GUI_HOME_LEFTCLICK_TELEPORT("§eLeftclick to teleport"),
-    GUI_HOME_SHIFTLEFTCLICK_EDIT_ICON("§eShift-Leftclick to edit the icon"),
-    GUI_HOME_RIGHTCLICK_DELETE("§cRightclick to delete"),
+    GUI_HOME_NAME("§a%home_name%"),
+    GUI_HOME_LORE(
+            "§7World: §e%home_worldname%\n" +
+            "§7%year%-%month%-%day% %hour%:%minute%:%second%\n" +
+            "\n" +
+            "§eLeftclick to teleport\n" +
+            "§eShift-Leftclick to edit the icon\n" +
+            "§cRightclick to delete"),
+    GUI_HOME_INFO_NAME("§e%player%"),
+    GUI_HOME_INFO_LORE("§7Homes: §e%homes_current%§7/§a%homes_limit%"),
     GUI_HOME_PAGE_PREVIOUS("§cBack"),
     GUI_HOME_PAGE_NEXT("§aNext")
     ;

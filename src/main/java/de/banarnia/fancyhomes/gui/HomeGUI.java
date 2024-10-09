@@ -16,8 +16,12 @@ import de.banarnia.fancyhomes.lang.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -54,16 +58,20 @@ public class HomeGUI {
 
     private GuiItem getInfoItem() {
         ItemBuilder builder = ItemBuilder.from(UtilItem.getPlayerSkull(target));
-        builder.setName("§e" + target.getName());
+        builder.setName(Message.GUI_HOME_INFO_NAME.replace("%player%", target.getName()));
 
-        int limit = FancyHomesAPI.get().getHomeLimit(target.getUniqueId());
-        builder.setLore("§7Homes: §e" + data.getHomeMap().size() + (limit >= 0 ? "§7/§a" + limit : ""));
+        String current = String.valueOf(data.getHomeMap().size());
+        String limit = String.valueOf(FancyHomesAPI.get().getHomeLimit(target.getUniqueId()));
+        String lore = Message.GUI_HOME_INFO_LORE
+                .replace("%homes_current%", current)
+                        .replace("%homes_limit%", limit);
+        builder.setLore(lore.split("\n"));
 
         return builder.asGuiItem();
     }
 
     private GuiItem getHomeItem(Home home) {
-        GuiItem guiItem = new GuiItem(home.buildIcon());
+        GuiItem guiItem = new GuiItem(buildHomeIcon(home));
         guiItem.setAction(click -> {
             Player player = (Player) click.getWhoClicked();
             if (click.isLeftClick()) {
@@ -105,6 +113,49 @@ public class HomeGUI {
     public boolean open(Player player) {
         gui.open(player);
         return true;
+    }
+
+    public ItemStack buildHomeIcon(Home home) {
+        String icon = home.getIcon();
+        World.Environment environment = home.getWorldEnvironment();
+        Material material = icon != null ? Material.getMaterial(icon) : null;
+        if (material == null) {
+            switch (environment) {
+                case NETHER:
+                    material = Material.NETHERRACK;
+                    break;
+                case THE_END:
+                    material = Material.END_STONE;
+                    break;
+                default:
+                    material = Material.GRASS_BLOCK;
+            }
+        }
+
+        Timestamp ts = home.getSqlTimestamp();
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(ts.getTime());
+        String year     = String.valueOf(cal.get(Calendar.YEAR));
+        String month    = String.valueOf(cal.get(Calendar.MONTH));
+        String day      = String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
+        String hour     = String.valueOf(cal.get(Calendar.HOUR_OF_DAY));
+        String minute   = String.valueOf(cal.get(Calendar.MINUTE));
+        String second   = String.valueOf(cal.get(Calendar.SECOND));
+
+        String lore = Message.GUI_HOME_LORE.get();
+        lore = lore.replace("%home_worldname%", home.getWorldName());
+        lore = lore.replace("%year%", year);
+        lore = lore.replace("%month%", month);
+        lore = lore.replace("%day%", day);
+        lore = lore.replace("%hour%", hour);
+        lore = lore.replace("%minute%", minute);
+        lore = lore.replace("%second%", second);
+
+        ItemBuilder builder = ItemBuilder.from(material);
+        builder.setName(Message.GUI_HOME_NAME.replace("%home_name%", home.getName()));
+        builder.setLore(lore.split("\n"));
+
+        return builder.build();
     }
 
 }
