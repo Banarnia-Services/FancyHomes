@@ -34,9 +34,16 @@ Message:
     "%prefix% §c你现在还不能删除加 §e%home% §c."
   command-error-delhome-failed: "%prefix% §c删除家失败."
   gui-confirmation-title: '§7确认删除?'
-  gui-home-leftclick-teleport: '§e左键点击传送'
-  gui-home-shiftleftclick-edit-icon: '§eShift+左键点击编辑图标'
-  gui-home-rightclick-delete: '§e右键点击删除'
+  gui-home-name: '§a%home_name%'
+  gui-home-lore: |-
+    §7World: §e%home_worldname%
+    §7%year%-%month%-%day% %hour%:%minute%:%second%
+
+    §e左键点击传送
+    §eShift+左键点击编辑图标
+    §c右键点击删除
+  gui-home-info-name: '§e%player%'
+  gui-home-info-lore: '§7Homes: §e%homes_current%§7/§a%homes_limit%'
   gui-home-page-previous: '§c返回'
   gui-home-page-next: '§a下一页'
   gui-icon-selection-title: '§7选择新图标'

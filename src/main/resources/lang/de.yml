@@ -29,9 +29,16 @@ Message:
     §cgerade nicht löschen.'
   command-error-delhome-failed: '%prefix% §cHome konnte nicht gelöscht werden.'
   gui-confirmation-title: '§7Home löschen?'
-  gui-home-leftclick-teleport: '§eLinksklick zum Teleportieren'
-  gui-home-shiftleftclick-edit-icon: '§eShift-Linksklick um das Home-Icon zu bearbeiten'
-  gui-home-rightclick-delete: '§eRechtsklick zum Löschen'
+  gui-home-name: '§a%home_name%'
+  gui-home-lore: |-
+    §7Welt: §e%home_worldname%
+    §7%day%.%month%-%year% %hour%:%minute%:%second%
+
+    §eLinksklick zum Teleportieren
+    §eShift-Linksklick um das Home-Icon zu bearbeiten
+    §eRechtsklick zum Löschen
+  gui-home-info-name: '§e%player%'
+  gui-home-info-lore: '§7Homes: §e%homes_current%§7/§a%homes_limit%'
   gui-home-page-previous: '§cZurück'
   gui-home-page-next: '§aWeiter'
   gui-icon-selection-title: '§7Icon auswählen'
