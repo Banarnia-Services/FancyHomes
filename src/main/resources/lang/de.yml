@@ -32,7 +32,7 @@ Message:
   gui-home-name: '§a%home_name%'
   gui-home-lore: |-
     §7Welt: §e%home_worldname%
-    §7%day%.%month%-%year% %hour%:%minute%:%second%
+    §7%day%.%month%.%year% %hour%:%minute%:%second%
 
     §eLinksklick zum Teleportieren
     §eShift-Linksklick um das Home-Icon zu bearbeiten
