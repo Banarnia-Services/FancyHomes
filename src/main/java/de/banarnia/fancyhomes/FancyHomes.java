@@ -58,6 +58,7 @@ public class FancyHomes extends JavaPlugin {
         File langFolder = new File(getDataFolder(), "lang");
         YamlConfig.fromResource(this, "lang/en.yml", langFolder, "en.yml");
         YamlConfig.fromResource(this, "lang/de.yml", langFolder, "de.yml");
+        YamlConfig.fromResource(this, "lang/de.yml", langFolder, "zhcn.yml");
         this.languageHandler = new LanguageHandler(this, homeConfig.getLanguage());
         this.languageHandler.register(Message.class);
 
