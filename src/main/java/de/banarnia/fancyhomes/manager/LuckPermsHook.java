@@ -3,10 +3,8 @@ package de.banarnia.fancyhomes.manager;
 import de.banarnia.api.UtilMath;
 import de.banarnia.api.permissions.PermissionManager;
 import net.luckperms.api.model.group.Group;
-import net.luckperms.api.model.user.User;
 import net.luckperms.api.util.Tristate;
 
-import java.beans.PersistenceDelegate;
 import java.util.UUID;
 
 /**
@@ -16,18 +14,19 @@ import java.util.UUID;
 public class LuckPermsHook {
 
     /**
-     * Check a users Home-Limit in LuckPerms.
+     * Get a meta permission value of type int. Will check user and users groups.
      * @param playerId Players UUID.
-     * @return Max home limit, minimum 0.
+     * @param metaPermission Meta permission String.
+     * @return Highest meta value, either 0, user meta value or group meta value.
      */
-    public static int getLuckPermsHomeLimit(UUID playerId) {
+    public static int getMetaPermission(UUID playerId, String metaPermission) {
         int maxHomes = 0;
 
         // Check limit for every group.
         for (Group group : PermissionManager.getGroupManager().getLoadedGroups()) {
             Tristate hasGroup = PermissionManager.getCachedPermissionData(playerId).checkPermission("group." + group.getName());
             if (hasGroup.asBoolean()) {
-                String groupVal = PermissionManager.getMetaValue(group, "fancyhomes.limit");
+                String groupVal = PermissionManager.getMetaValue(group, metaPermission);
                 if (groupVal == null || !UtilMath.isInt(groupVal))
                     continue;
 
@@ -38,7 +37,7 @@ public class LuckPermsHook {
         }
 
         // Check user limit.
-        String userVal = PermissionManager.getMetaValue(playerId, "fancyhomes.limit");
+        String userVal = PermissionManager.getMetaValue(playerId, metaPermission);
         if (userVal == null || !UtilMath.isInt(userVal))
             return maxHomes;
 

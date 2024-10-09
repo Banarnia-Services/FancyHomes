@@ -121,8 +121,19 @@ public class HomeManager implements FancyHomesAPI {
     @Override
     public int getHomeLimit(UUID playerId) {
         if (Bukkit.getPluginManager().getPlugin("LuckPerms") != null) {
+            // Get old user limit. Required to support pre 1.3.8 versions.
+            int oldUserLimit = LuckPermsHook.getMetaPermission(playerId, "fancyhomes.limit");
+
+            // Get new user limit for version 1.3.8 and above.
+            int newUserLimit = LuckPermsHook.getMetaPermission(playerId, "fancyhomes-limit");
+
+            // Calc user permission limit.
+            int userLimit = Math.max(oldUserLimit, newUserLimit);
+
+            // Home limit set in config.
             int configLimit = config.getMaxHomes();
-            int userLimit = LuckPermsHook.getLuckPermsHomeLimit(playerId);
+
+            // Home limit is either users limit or configured limit, if higher.
             return Math.max(configLimit, userLimit);
         }
 
