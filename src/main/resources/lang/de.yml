@@ -36,7 +36,7 @@ Message:
 
     §eLinksklick zum Teleportieren
     §eShift-Linksklick um das Home-Icon zu bearbeiten
-    §eRechtsklick zum Löschen
+    §cRechtsklick zum Löschen
   gui-home-info-name: '§e%player%'
   gui-home-info-lore: '§7Homes: §e%homes_current%§7/§a%homes_limit%'
   gui-home-page-previous: '§cZurück'
