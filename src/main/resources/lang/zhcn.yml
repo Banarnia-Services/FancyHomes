@@ -43,7 +43,7 @@ Message:
     §eShift+左键点击编辑图标
     §c右键点击删除
   gui-home-info-name: '§e%player%'
-  gui-home-info-lore: '§7Homes: §e%homes_current%§7/§a%homes_limit%'
+  gui-home-info-lore: '§7已设置家传送点数量: §e%homes_current%§7/§a%homes_limit%'
   gui-home-page-previous: '§c返回'
   gui-home-page-next: '§a下一页'
   gui-icon-selection-title: '§7选择新图标'
