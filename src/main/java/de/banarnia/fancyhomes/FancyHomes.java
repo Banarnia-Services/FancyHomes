@@ -1,7 +1,7 @@
 package de.banarnia.fancyhomes;
 
-import de.banarnia.api.acf.BukkitCommandManager;
-import de.banarnia.api.acf.CommandManager;
+import co.aikar.commands.BukkitCommandManager;
+import co.aikar.commands.CommandManager;
 import de.banarnia.api.config.Config;
 import de.banarnia.api.config.YamlConfig;
 import de.banarnia.api.config.YamlVersionConfig;

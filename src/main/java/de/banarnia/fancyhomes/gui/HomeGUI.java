@@ -1,15 +1,15 @@
 package de.banarnia.fancyhomes.gui;
 
-import de.banarnia.api.triumphgui.builder.item.ItemBuilder;
-import de.banarnia.api.triumphgui.components.util.Legacy;
-import de.banarnia.api.triumphgui.guis.Gui;
-import de.banarnia.api.triumphgui.guis.GuiItem;
-import de.banarnia.api.triumphgui.guis.PaginatedGui;
-import de.banarnia.fancyhomes.FancyHomes;
-import de.banarnia.fancyhomes.FancyHomesAPI;
-import de.banarnia.api.UtilGUI;
 import de.banarnia.api.UtilItem;
 import de.banarnia.api.UtilThread;
+import de.banarnia.fancyhomes.api.UtilGUI;
+import dev.triumphteam.gui.builder.item.ItemBuilder;
+import dev.triumphteam.gui.components.util.Legacy;
+import dev.triumphteam.gui.guis.Gui;
+import dev.triumphteam.gui.guis.GuiItem;
+import dev.triumphteam.gui.guis.PaginatedGui;
+import de.banarnia.fancyhomes.FancyHomes;
+import de.banarnia.fancyhomes.FancyHomesAPI;
 import de.banarnia.fancyhomes.data.HomeData;
 import de.banarnia.fancyhomes.data.storage.Home;
 import de.banarnia.fancyhomes.lang.Message;

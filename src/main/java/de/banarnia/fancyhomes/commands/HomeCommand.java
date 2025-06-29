@@ -1,8 +1,8 @@
 package de.banarnia.fancyhomes.commands;
 
-import de.banarnia.api.acf.BaseCommand;
-import de.banarnia.api.acf.CommandIssuer;
-import de.banarnia.api.acf.annotation.*;
+import co.aikar.commands.BaseCommand;
+import co.aikar.commands.CommandIssuer;
+import co.aikar.commands.annotation.*;
 import de.banarnia.fancyhomes.FancyHomes;
 import de.banarnia.fancyhomes.FancyHomesAPI;
 import de.banarnia.api.UtilThread;
